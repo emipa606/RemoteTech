@@ -41,10 +41,7 @@ public class Building_DetonatorWire : Building
     {
         base.SpawnSetup(map, respawningAfterLoad);
         var comp = GetComp<CompWiredDetonationTransmitter>();
-        if (comp != null)
-        {
-            comp.signalPassageTest = SignalPassageTest;
-        }
+        comp?.signalPassageTest = SignalPassageTest;
     }
 
     public override void ExposeData()

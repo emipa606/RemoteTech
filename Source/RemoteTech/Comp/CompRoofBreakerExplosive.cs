@@ -1,6 +1,5 @@
-﻿using HugsLib;
+﻿using System;
 using RimWorld;
-using System;
 using Verse;
 using Verse.Sound;
 
@@ -11,8 +10,8 @@ namespace RemoteTech;
 public class CompRoofBreakerExplosive : CompMiningExplosive
 {
     private const int RoofFilthAmount = 3;
+    private static TickDelayScheduler tickDelayScheduler;
     private readonly IntRange CollapseDelay = new(0, 120);
-    static TickDelayScheduler tickDelayScheduler = null;
 
     protected override void Detonate()
     {
@@ -64,6 +63,7 @@ public class CompRoofBreakerExplosive : CompMiningExplosive
                 {
                     tickDelayScheduler = gameComponent.scheduler;
                 }
+
                 // check if valid
                 if (tickDelayScheduler == null || tickDelayScheduler.lastProcessedTick < 0)
                 {
@@ -71,6 +71,7 @@ public class CompRoofBreakerExplosive : CompMiningExplosive
                     //Log.Warning("TickDelayScheduler is either null or not initialized.");
                     throw new Exception("TickDelayScheduler is either null or not initialized");
                 }
+
                 tickDelayScheduler.ScheduleCallback(() =>
                 {
                     // delay collapse for more interesting visual effect

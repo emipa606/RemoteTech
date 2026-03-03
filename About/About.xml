@@ -114,6 +114,8 @@
   <description>[img]https://img.litet.net/logos/Info.png[/img]
 Update of UnlimitedHugss mod https://steamcommunity.com/sharedfiles/filedetails/?id=761379469
 
+- From 1.6 this mod has no longer a need for HugsLib, thanks to Zaljerem!
+
 [img]https://img.litet.net/logos/Notice.png[/img]
 
 [table]
@@ -157,6 +159,6 @@ My other mods: [url=https://steamcommunity.com/sharedfiles/filedetails/?id=81877
 [*] Use [url=https://github.com/RimSort/RimSort/releases/latest]RimSort[/url] to sort your mods
 [/list] 
 
-[url=https://steamcommunity.com/sharedfiles/filedetails/changelog/3004917209][img]https://img.shields.io/github/v/release/emipa606/RemoteTech?label=latest%20version&amp;style=plastic&amp;color=9f1111&amp;labelColor=black[/img][/url] | tags: explosives, defense strategy, advanced technology</description>
-  <modVersion IgnoreIfNoMatchingField="True">1.6.3</modVersion>
+[url=https://steamcommunity.com/sharedfiles/filedetails/changelog/3004917209][img]https://img.shields.io/github/v/release/emipa606/RemoteTech?label=latest%20version&amp;style=plastic&amp;color=9f1111&amp;labelColor=black[/img][/url] | tags: advanced technology, explosives, defense strategy</description>
+  <modVersion IgnoreIfNoMatchingField="True">1.6.4</modVersion>
 </ModMetaData>

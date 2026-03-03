@@ -17,8 +17,6 @@ public class Building_RemoteExplosive : Building, ISwitchable, IWirelessDetonati
     private static readonly string ArmButtonLabel = "RemoteExplosive_arm_label".Translate();
     private static readonly string ArmButtonDesc = "RemoteExplosive_arm_desc".Translate();
 
-    private BuildingProperties_RemoteExplosive _customProps;
-
     protected bool beepWhenLit = true;
     private CompChannelSelector channelsComp;
 
@@ -33,10 +31,10 @@ public class Building_RemoteExplosive : Building, ISwitchable, IWirelessDetonati
     {
         get
         {
-            _customProps ??= def.building as BuildingProperties_RemoteExplosive ??
-                             new BuildingProperties_RemoteExplosive();
+            field ??= def.building as BuildingProperties_RemoteExplosive ??
+                      new BuildingProperties_RemoteExplosive();
 
-            return _customProps;
+            return field;
         }
     }
 

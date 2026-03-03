@@ -24,23 +24,6 @@ Tip: switches can be used to toggle vents remotely, as well as in groups.</rxGas
   <!-- EN: Armor plating -->
   <rxGasVent.comps.CompUpgrade-0.label>Armor plating</rxGasVent.comps.CompUpgrade-0.label>
   <!-- EN: Effects: Max hit points: x300%, Flammability: x0% -->
-  <rxGasVent.comps.CompUpgrade-0._effectDescription>Effects: Max hit points: x300%, Flammability: x0%</rxGasVent.comps.CompUpgrade-0._effectDescription>
-  <!-- EN: Required materials: 50x plasteel -->
-  <rxGasVent.comps.CompUpgrade-0._materialsDescription>Required materials: 50x plasteel</rxGasVent.comps.CompUpgrade-0._materialsDescription>
-  <!-- EN: High-power fans -->
-  <rxGasVent.comps.CompUpgrade-1.label>High-power fans</rxGasVent.comps.CompUpgrade-1.label>
-  <!-- EN: Effects: Gas venting power: x200%, Power consumption: x200%, Beauty: x10 -->
-  <rxGasVent.comps.CompUpgrade-1._effectDescription>Effects: Gas venting power: x200%, Power consumption: x200%, Beauty: x10</rxGasVent.comps.CompUpgrade-1._effectDescription>
-  <!-- EN: Required materials: 2x component, 60x steel -->
-  <rxGasVent.comps.CompUpgrade-1._materialsDescription>Required materials: 2x component, 60x steel</rxGasVent.comps.CompUpgrade-1._materialsDescription>
-  <!-- EN: Idle power relay -->
-  <rxGasVent.comps.CompUpgrade-2.label>Idle power relay</rxGasVent.comps.CompUpgrade-2.label>
-  <!-- EN: Effects: The vent will draw very little power when no gas needs to be moved. -->
-  <rxGasVent.comps.CompUpgrade-2._effectDescription>Effects: The vent will draw very little power when no gas needs to be moved.</rxGasVent.comps.CompUpgrade-2._effectDescription>
-  <!-- EN: Required materials: 2x component -->
-  <rxGasVent.comps.CompUpgrade-2._materialsDescription>Required materials: 2x component</rxGasVent.comps.CompUpgrade-2._materialsDescription>
-  <!-- EN: The vent will draw very little power when no gas needs to be moved. -->
-  <rxGasVent.comps.CompUpgrade-2.effectDescription>The vent will draw very little power when no gas needs to be moved.</rxGasVent.comps.CompUpgrade-2.effectDescription>
   <!-- EN: portable power unit -->
   <rxPowerUnit.label>portable power unit</rxPowerUnit.label>
   <!-- EN: High-tech solar panels combined with a battery bank. Lightweight and weatherproof- a great choice for camping trips and powering things in the field. The battery will retain its charge when uninstalled. The bar shows the charge level of the battery. -->
@@ -48,15 +31,6 @@ Tip: switches can be used to toggle vents remotely, as well as in groups.</rxGas
   <!-- EN: Bigger battery -->
   <rxPowerUnit.comps.CompUpgrade-0.label>Bigger battery</rxPowerUnit.comps.CompUpgrade-0.label>
   <!-- EN: Effects: Power capacity: x175%, Mass: x150% -->
-  <rxPowerUnit.comps.CompUpgrade-0._effectDescription>Effects: Power capacity: x175%, Mass: x150%</rxPowerUnit.comps.CompUpgrade-0._effectDescription>
-  <!-- EN: Required materials: 3x component -->
-  <rxPowerUnit.comps.CompUpgrade-0._materialsDescription>Required materials: 3x component</rxPowerUnit.comps.CompUpgrade-0._materialsDescription>
-  <!-- EN: Tracking motors -->
-  <rxPowerUnit.comps.CompUpgrade-1.label>Tracking motors</rxPowerUnit.comps.CompUpgrade-1.label>
-  <!-- EN: Effects: Sun exposure: x200%, Mass: x120% -->
-  <rxPowerUnit.comps.CompUpgrade-1._effectDescription>Effects: Sun exposure: x200%, Mass: x120%</rxPowerUnit.comps.CompUpgrade-1._effectDescription>
-  <!-- EN: Required materials: 1x component, 40x steel -->
-  <rxPowerUnit.comps.CompUpgrade-1._materialsDescription>Required materials: 1x component, 40x steel</rxPowerUnit.comps.CompUpgrade-1._materialsDescription>
   <!-- EN: proximity sensor -->
   <rxProximitySensor.label>proximity sensor</rxProximitySensor.label>
   <!-- EN: Scans for movement in the surrounding area. On detection, can either sound an alarm, or send a detonation signal. Can be upgraded to a wireless detonator, and even an AI core to ignore friendly units. -->
@@ -64,27 +38,6 @@ Tip: switches can be used to toggle vents remotely, as well as in groups.</rxGas
   <!-- EN: Signal processor -->
   <rxProximitySensor.comps.CompUpgrade-0.label>Signal processor</rxProximitySensor.comps.CompUpgrade-0.label>
   <!-- EN: Effects: Sensor range: x125%, Sensor angle: x125%, Power consumption: x120% -->
-  <rxProximitySensor.comps.CompUpgrade-0._effectDescription>Effects: Sensor range: x125%, Sensor angle: x125%, Power consumption: x120%</rxProximitySensor.comps.CompUpgrade-0._effectDescription>
-  <!-- EN: Required materials: 1x advanced component -->
-  <rxProximitySensor.comps.CompUpgrade-0._materialsDescription>Required materials: 1x advanced component</rxProximitySensor.comps.CompUpgrade-0._materialsDescription>
-  <!-- EN: Wireless detonator -->
-  <rxProximitySensor.comps.CompUpgrade-1.label>Wireless detonator</rxProximitySensor.comps.CompUpgrade-1.label>
-  <!-- EN: Effects: Adds a wireless detonator to the detector, allowing it to trigger wireless explosives. -->
-  <rxProximitySensor.comps.CompUpgrade-1._effectDescription>Effects: Adds a wireless detonator to the detector, allowing it to trigger wireless explosives.</rxProximitySensor.comps.CompUpgrade-1._effectDescription>
-  <!-- EN: Required materials: 1x component, 1x advanced component -->
-  <rxProximitySensor.comps.CompUpgrade-1._materialsDescription>Required materials: 1x component, 1x advanced component</rxProximitySensor.comps.CompUpgrade-1._materialsDescription>
-  <!-- EN: Adds a wireless detonator to the detector, allowing it to trigger wireless explosives. -->
-  <rxProximitySensor.comps.CompUpgrade-1.effectDescription>Adds a wireless detonator to the detector, allowing it to trigger wireless explosives.</rxProximitySensor.comps.CompUpgrade-1.effectDescription>
-  <!-- EN: AI controller -->
-  <rxProximitySensor.comps.CompUpgrade-2.label>AI controller</rxProximitySensor.comps.CompUpgrade-2.label>
-  <!-- EN: Effects: Installs an AI persona core to filter the detected targets.
-\nSensor rotation speed: x125%, Max hit points: x200%, Flammability: x0% -->
-  <rxProximitySensor.comps.CompUpgrade-2._effectDescription>Effects: Installs an AI persona core to filter the detected targets.
-Sensor rotation speed: x125%, Max hit points: x200%, Flammability: x0%</rxProximitySensor.comps.CompUpgrade-2._effectDescription>
-  <!-- EN: Required materials: 1x persona core, 40x plasteel -->
-  <rxProximitySensor.comps.CompUpgrade-2._materialsDescription>Required materials: 1x persona core, 40x plasteel</rxProximitySensor.comps.CompUpgrade-2._materialsDescription>
-  <!-- EN: Installs an AI persona core to filter the detected targets. -->
-  <rxProximitySensor.comps.CompUpgrade-2.effectDescription>Installs an AI persona core to filter the detected targets.</rxProximitySensor.comps.CompUpgrade-2.effectDescription>
   <!-- EN: chemical foam -->
   <rxWallFoamBlob.label>chemical foam</rxWallFoamBlob.label>
   <!-- EN: Becomes tougher than rock as it solidifies. -->

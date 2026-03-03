@@ -222,8 +222,8 @@ public class CompUpgrade : ThingComp, IThingHolder
             var missingCount = required.count;
             for (var j = 0; j < ingredients.Count; j++)
             {
-                var filled = RemoteTechUtility.GetAtMethod.Invoke( ingredients, [j]) as Thing;
-                if (filled.def == required.thingDef)
+                if (RemoteTechUtility.GetAtMethod.Invoke(ingredients, [j]) is Thing filled &&
+                    filled.def == required.thingDef)
                 {
                     missingCount -= filled.stackCount;
                 }

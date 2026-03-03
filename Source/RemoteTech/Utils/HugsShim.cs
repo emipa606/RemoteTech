@@ -2,7 +2,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Reflection;
-using System.Runtime.CompilerServices;
 using System.Text;
 using UnityEngine;
 using Verse;
@@ -12,17 +11,19 @@ namespace HugsLib.Utils;
 
 public static class HugsLibUtility
 {
-    public static readonly BindingFlags AllBindingFlags = BindingFlags.Instance | BindingFlags.Static | BindingFlags.Public | BindingFlags.NonPublic;
+    public static readonly BindingFlags AllBindingFlags =
+        BindingFlags.Instance | BindingFlags.Static | BindingFlags.Public | BindingFlags.NonPublic;
 
     public static bool ShiftIsHeld => Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift);
 
     public static bool AltIsHeld => Input.GetKey(KeyCode.LeftAlt) || Input.GetKey(KeyCode.RightAlt);
 
-    public static bool ControlIsHeld => Input.GetKey(KeyCode.LeftControl) || Input.GetKey(KeyCode.RightControl) || Input.GetKey(KeyCode.LeftCommand) || Input.GetKey(KeyCode.RightCommand);
+    public static bool ControlIsHeld => Input.GetKey(KeyCode.LeftControl) || Input.GetKey(KeyCode.RightControl) ||
+                                        Input.GetKey(KeyCode.LeftCommand) || Input.GetKey(KeyCode.RightCommand);
 
     public static string ListElements(this IEnumerable list)
     {
-        return list.Join(", ", explicitNullValues: true);
+        return list.Join(", ", true);
     }
 
     public static string Join(this IEnumerable list, string separator, bool explicitNullValues = false)
@@ -31,20 +32,23 @@ public static class HugsLibUtility
         {
             return "";
         }
-        StringBuilder stringBuilder = new StringBuilder();
-        bool flag = false;
-        foreach (object item in list)
+
+        var stringBuilder = new StringBuilder();
+        var flag = false;
+        foreach (var item in list)
         {
             if (flag)
             {
                 stringBuilder.Append(separator);
             }
+
             flag = true;
             if (item != null || explicitNullValues)
             {
-                stringBuilder.Append((item != null) ? item.ToString() : "[null]");
+                stringBuilder.Append(item != null ? item.ToString() : "[null]");
             }
         }
+
         return stringBuilder.ToString();
     }
 
@@ -55,21 +59,21 @@ public static class HugsLibUtility
         {
             return false;
         }
+
         return thing.Map.designationManager.DesignationOn(thing, def) != null;
     }
 
 
     public static void ToggleDesignation(this IntVec3 pos, DesignationDef def, bool enable, Map map = null)
     {
-        if (map == null)
-        {
-            map = Find.CurrentMap;
-        }
+        map ??= Find.CurrentMap;
+
         if (map == null || map.designationManager == null)
         {
             throw new Exception("ToggleDesignation requires a map argument or VisibleMap must be set");
         }
-        Designation designation = map.designationManager.DesignationAt(pos, def);
+
+        var designation = map.designationManager.DesignationAt(pos, def);
         if (enable && designation == null)
         {
             map.designationManager.AddDesignation(new Designation(pos, def));
@@ -82,14 +86,13 @@ public static class HugsLibUtility
 
     public static bool HasDesignation(this IntVec3 pos, DesignationDef def, Map map = null)
     {
-        if (map == null)
-        {
-            map = Find.CurrentMap;
-        }
+        map ??= Find.CurrentMap;
+
         if (map == null || map.designationManager == null)
         {
             return false;
         }
+
         return map.designationManager.DesignationAt(pos, def) != null;
     }
 
@@ -100,7 +103,8 @@ public static class HugsLibUtility
         {
             throw new Exception("Thing must belong to a map to toggle designations on it");
         }
-        Designation designation = thing.Map.designationManager.DesignationOn(thing, def);
+
+        var designation = thing.Map.designationManager.DesignationOn(thing, def);
         if (enable && designation == null)
         {
             thing.Map.designationManager.AddDesignation(new Designation(thing, def));
@@ -113,40 +117,41 @@ public static class HugsLibUtility
 
     public static class InjectedDefHasher
     {
-        private delegate void GiveShortHashTakenHashes(Def def, Type defType, HashSet<ushort> takenHashes);
-
-        private delegate void GiveShortHash(Def def, Type defType);
-
         private static GiveShortHash giveShortHashDelegate;
 
         internal static void PrepareReflection()
         {
             try
             {
-                Dictionary<Type, HashSet<ushort>> takenHashesDictionary = typeof(ShortHashGiver).GetField("takenHashesPerDeftype", BindingFlags.Static | BindingFlags.NonPublic)?.GetValue(null) as Dictionary<Type, HashSet<ushort>>;
-                if (takenHashesDictionary == null)
+                if (typeof(ShortHashGiver)
+                        .GetField("takenHashesPerDeftype", BindingFlags.Static | BindingFlags.NonPublic)
+                        ?.GetValue(null) is not Dictionary<Type, HashSet<ushort>> takenHashesDictionary)
                 {
                     throw new Exception("taken hashes");
                 }
-                MethodInfo method = typeof(ShortHashGiver).GetMethod("GiveShortHash", BindingFlags.Static | BindingFlags.NonPublic, null, new Type[3]
-                {
-                typeof(Def),
-                typeof(Type),
-                typeof(HashSet<ushort>)
-                }, null);
+
+                var method = typeof(ShortHashGiver).GetMethod("GiveShortHash",
+                    BindingFlags.Static | BindingFlags.NonPublic, null, [
+                        typeof(Def),
+                        typeof(Type),
+                        typeof(HashSet<ushort>)
+                    ], null);
                 if (method == null)
                 {
                     throw new Exception("hashing method");
                 }
-                GiveShortHashTakenHashes hashDelegate = (GiveShortHashTakenHashes)Delegate.CreateDelegate(typeof(GiveShortHashTakenHashes), method);
-                giveShortHashDelegate = delegate (Def def, Type defType)
+
+                var hashDelegate =
+                    (GiveShortHashTakenHashes)Delegate.CreateDelegate(typeof(GiveShortHashTakenHashes), method);
+                giveShortHashDelegate = delegate(Def def, Type defType)
                 {
-                    HashSet<ushort> hashSet = takenHashesDictionary.TryGetValue(defType);
+                    var hashSet = takenHashesDictionary.TryGetValue(defType);
                     if (hashSet == null)
                     {
-                        hashSet = new HashSet<ushort>();
+                        hashSet = [];
                         takenHashesDictionary.Add(defType, hashSet);
                     }
+
                     hashDelegate(def, defType, hashSet);
                 };
             }
@@ -162,14 +167,12 @@ public static class HugsLibUtility
             {
                 throw new Exception("Hasher not initialized");
             }
+
             giveShortHashDelegate(newDef, defType);
         }
 
-        
-                
+        private delegate void GiveShortHashTakenHashes(Def def, Type defType, HashSet<ushort> takenHashes);
 
+        private delegate void GiveShortHash(Def def, Type defType);
     }
-
-
-
 }

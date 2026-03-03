@@ -1,12 +1,12 @@
-﻿using HugsLib.Utils;
+﻿using System.Collections.Generic;
+using HugsLib.Utils;
 using RimWorld;
-using System.Collections.Generic;
 using Verse;
 
 namespace RemoteTech;
 
 /// <summary>
-/// A designator that selects only detonation wire
+///     A designator that selects only detonation wire
 /// </summary>
 public class Designator_SelectDetonatorWire : Designator
 {
@@ -22,6 +22,14 @@ public class Designator_SelectDetonatorWire : Designator
         soundSucceeded = SoundDefOf.ThingSelected;
         hasDesignateAllFloatMenuOption = true;
     }
+
+    public override string Label => "WireDesignator_label".Translate();
+
+    public override string Desc => "WireDesignator_desc".Translate();
+
+    public override DrawStyleCategoryDef DrawStyleCategory => DefDatabase<DrawStyleCategoryDef>.GetNamed("Conduits");
+
+    public override bool DragDrawMeasurements => true;
 
     private void CellDesignate(IntVec3 cell)
     {
@@ -44,7 +52,10 @@ public class Designator_SelectDetonatorWire : Designator
         }
     }
 
-    private static bool IsSelectable(Thing t) { return t.def?.building is BuildingProperties_DetonatorWire; }
+    private static bool IsSelectable(Thing t)
+    {
+        return t.def?.building is BuildingProperties_DetonatorWire;
+    }
 
     private static void TryCloseArchitectMenu()
     {
@@ -80,7 +91,10 @@ public class Designator_SelectDetonatorWire : Designator
         return false;
     }
 
-    public override AcceptanceReport CanDesignateThing(Thing t) { return IsSelectable(t); }
+    public override AcceptanceReport CanDesignateThing(Thing t)
+    {
+        return IsSelectable(t);
+    }
 
     public override void DesignateMultiCell(IEnumerable<IntVec3> cells)
     {
@@ -107,12 +121,4 @@ public class Designator_SelectDetonatorWire : Designator
         CellDesignate(c);
         TryCloseArchitectMenu();
     }
-
-    public override string Label => "WireDesignator_label".Translate();
-
-    public override string Desc => "WireDesignator_desc".Translate();
-
-    public override DrawStyleCategoryDef DrawStyleCategory => DefDatabase<DrawStyleCategoryDef>.GetNamed("Conduits");
-
-    public override bool DragDrawMeasurements => true;
 }

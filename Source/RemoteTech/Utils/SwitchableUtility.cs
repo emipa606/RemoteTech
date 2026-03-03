@@ -7,32 +7,6 @@ namespace RemoteTech;
 
 public static class SwitchableUtility
 {
-    public static void UpdateSwitchDesignation(this Thing thing)
-    {
-        if (thing.Map == null)
-        {
-            return;
-        }
-
-        thing.ToggleDesignation(Resources.Designation.rxSwitchThing, thing.WantsSwitching());
-    }
-
-    public static bool WantsSwitching(this Thing thing)
-    {
-        return SwitchablesOnThing(thing).Any(s => s.WantsSwitch());
-    }
-
-    public static void TrySwitch(this Thing thing)
-    {
-        foreach (var s in SwitchablesOnThing(thing))
-        {
-            if (s.WantsSwitch())
-            {
-                s.DoSwitch();
-            }
-        }
-    }
-
     private static IEnumerable<ISwitchable> SwitchablesOnThing(Thing thing)
     {
         var list = new List<ISwitchable>();
@@ -55,5 +29,34 @@ public static class SwitchableUtility
         }
 
         return list;
+    }
+
+    extension(Thing thing)
+    {
+        public void UpdateSwitchDesignation()
+        {
+            if (thing.Map == null)
+            {
+                return;
+            }
+
+            thing.ToggleDesignation(Resources.Designation.rxSwitchThing, thing.WantsSwitching());
+        }
+
+        public bool WantsSwitching()
+        {
+            return SwitchablesOnThing(thing).Any(s => s.WantsSwitch());
+        }
+
+        public void TrySwitch()
+        {
+            foreach (var s in SwitchablesOnThing(thing))
+            {
+                if (s.WantsSwitch())
+                {
+                    s.DoSwitch();
+                }
+            }
+        }
     }
 }

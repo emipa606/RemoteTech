@@ -2,38 +2,11 @@ using System;
 using System.Collections.Generic;
 using Verse;
 
-/// <summary>
-/// A performance-friendly way to execute code at arbitrary tick intervals.
-/// Optimized for one-off timed callbacks with variable callback delay. 
-/// Use DistributedTickScheduler instead if you have many recipients with recurring callbacks and constant time.
-/// Callbacks are called at tick time, which means a game must be loaded and running for them to be processed.
-/// </summary>
 namespace RemoteTech;
+
 public class TickDelayScheduler
 {
-    public class SchedulerEntry
-    {
-        public readonly Action callback;
-
-        public readonly int interval;
-
-        public readonly bool repeat;
-
-        public readonly Thing owner;
-
-        public int dueAtTick;
-
-        public SchedulerEntry(Action callback, int interval, Thing owner, int dueAtTick, bool repeat)
-        {
-            this.callback = callback;
-            this.interval = interval;
-            this.owner = owner;
-            this.repeat = repeat;
-            this.dueAtTick = dueAtTick;
-        }
-    }
-
-    private readonly LinkedList<SchedulerEntry> entries = new LinkedList<SchedulerEntry>();
+    private readonly LinkedList<SchedulerEntry> entries = [];
 
     //public int lastProcessedTick = -1;
 
@@ -57,26 +30,29 @@ public class TickDelayScheduler
         {
             throw new Exception("Ticking not initialized TickDelayScheduler");
         }
+
         lastProcessedTick = currentTick;
         while (entries.First != null)
         {
-            SchedulerEntry value = entries.First.Value;
+            var value = entries.First.Value;
             if (value.dueAtTick > currentTick)
             {
                 break;
             }
+
             entries.RemoveFirst();
-            bool flag = DoCallback(value);
-            if (value.repeat && flag)
+            if (!value.repeat || !DoCallback(value))
             {
-                value.dueAtTick = currentTick + value.interval;
-                ScheduleEntry(value);
+                continue;
             }
+
+            value.dueAtTick = currentTick + value.interval;
+            ScheduleEntry(value);
         }
     }
 
     /// <summary>
-    /// Registers a delegate to be called in a given number of ticks.
+    ///     Registers a delegate to be called in a given number of ticks.
     /// </summary>
     /// <param name="callback">The delegate to be called</param>
     /// <param name="dueInTicks">The delay in ticks before the delegate is called</param>
@@ -89,19 +65,23 @@ public class TickDelayScheduler
             Log.Message($"lastProcessedTick: {lastProcessedTick}");
             throw new Exception("Adding callback to not initialized TickDelayScheduler");
         }
+
         if (callback == null)
         {
             throw new NullReferenceException("callback cannot be null");
         }
+
         if (dueInTicks < 0)
         {
             throw new Exception("invalid dueInTicks value: " + dueInTicks);
         }
+
         if (dueInTicks == 0 && repeat)
         {
             throw new Exception("Cannot schedule repeating callback with 0 delay");
         }
-        SchedulerEntry schedulerEntry = new SchedulerEntry(callback, dueInTicks, owner, lastProcessedTick + dueInTicks, repeat);
+
+        var schedulerEntry = new SchedulerEntry(callback, dueInTicks, owner, lastProcessedTick + dueInTicks, repeat);
         if (dueInTicks == 0)
         {
             DoCallback(schedulerEntry);
@@ -113,57 +93,78 @@ public class TickDelayScheduler
     }
 
     /// <summary>
-    /// Manually remove a callback to abort a delay or clear a recurring callback.
-    /// Silently fails if the callback is not found.
+    ///     Manually remove a callback to abort a delay or clear a recurring callback.
+    ///     Silently fails if the callback is not found.
     /// </summary>
     /// <param name="callback">The scheduled callback</param>
     public void TryUnscheduleCallback(Action callback)
     {
-        for (LinkedListNode<SchedulerEntry> linkedListNode = entries.First; linkedListNode != null; linkedListNode = linkedListNode.Next)
+        for (var linkedListNode = entries.First; linkedListNode != null; linkedListNode = linkedListNode.Next)
         {
-            if (linkedListNode.Value.callback == callback)
+            if (linkedListNode.Value.callback != callback)
             {
-                entries.Remove(linkedListNode);
-                break;
+                continue;
             }
+
+            entries.Remove(linkedListNode);
+            break;
         }
     }
 
     /// <summary>
-    /// Only for debug purposes
+    ///     Only for debug purposes
     /// </summary>
     public IEnumerable<SchedulerEntry> GetAllPendingCallbacks()
     {
         return entries;
     }
 
-    private bool DoCallback(SchedulerEntry entry)
+    private static bool DoCallback(SchedulerEntry entry)
     {
-        if (entry.owner == null || entry.owner.Spawned)
+        if (entry.owner is { Spawned: false })
         {
-            try
-            {
-                entry.callback();
-                return true;
-            }
-            catch (Exception)
-            {
-                Log.Error("TickDelayScheduler caught an exception while calling {0} registered by {1}: {2}");
-            }
+            return false;
         }
+
+        try
+        {
+            entry.callback();
+            return true;
+        }
+        catch (Exception)
+        {
+            Log.Error("TickDelayScheduler caught an exception while calling {0} registered by {1}: {2}");
+        }
+
         return false;
     }
 
     private void ScheduleEntry(SchedulerEntry newEntry)
     {
-        for (LinkedListNode<SchedulerEntry> linkedListNode = entries.Last; linkedListNode != null; linkedListNode = linkedListNode.Previous)
+        for (var linkedListNode = entries.Last; linkedListNode != null; linkedListNode = linkedListNode.Previous)
         {
-            if (linkedListNode.Value.dueAtTick <= newEntry.dueAtTick)
+            if (linkedListNode.Value.dueAtTick > newEntry.dueAtTick)
             {
-                entries.AddAfter(linkedListNode, newEntry);
-                return;
+                continue;
             }
+
+            entries.AddAfter(linkedListNode, newEntry);
+            return;
         }
+
         entries.AddFirst(newEntry);
+    }
+
+    public class SchedulerEntry(Action callback, int interval, Thing owner, int dueAtTick, bool repeat)
+    {
+        public readonly Action callback = callback;
+
+        public readonly int interval = interval;
+
+        public readonly Thing owner = owner;
+
+        public readonly bool repeat = repeat;
+
+        public int dueAtTick = dueAtTick;
     }
 }

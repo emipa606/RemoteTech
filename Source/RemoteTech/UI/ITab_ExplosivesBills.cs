@@ -11,12 +11,12 @@ namespace RemoteTech;
 /// </summary>
 public class ITab_ExplosivesBills : ITab_Bills
 {
-    private  static readonly Vector2 WinSize = new(370f, 480f);
+    private static readonly Vector2 WinSize = new(370f, 480f);
     private RecipeVariantType currentVariant;
-    private  Bill mouseoverBill;
-    private  Vector2 scrollPosition;
+    private Bill mouseoverBill;
+    private Vector2 scrollPosition;
 
-    private  float viewHeight = 1000f;
+    private float viewHeight = 1000f;
 
     public ITab_ExplosivesBills()
     {

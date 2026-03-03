@@ -8,228 +8,223 @@ namespace RemoteTech;
 
 public class DistributedTickScheduler
 {
-	public class TickableEntry
-	{
-		public readonly Action callback;
+    private readonly Dictionary<Thing, TickableEntry> entries = new();
 
-		public readonly int interval;
+    private readonly List<ListTicker> tickers = [];
 
-		public readonly Thing owner;
+    private readonly Queue<Thing> unregisterQueue = new();
 
-		public TickableEntry(Action callback, int interval, Thing owner)
-		{
-			this.callback = callback;
-			this.interval = interval;
-			this.owner = owner;
-		}
-	}
+    private int lastProcessedTick = -1;
 
-	private class ListTicker
-	{
-		public readonly int tickInterval;
+    internal DistributedTickScheduler()
+    {
+    }
 
-		private readonly DistributedTickScheduler scheduler;
+    public void RegisterTickability(Action callback, int tickInterval, Thing owner)
+    {
+        if (lastProcessedTick < 0)
+        {
+            throw new Exception("Adding callback to not initialized DistributedTickScheduler");
+        }
 
-		private readonly List<TickableEntry> tickList = new List<TickableEntry>();
+        if (owner == null || owner.Destroyed)
+        {
+            throw new Exception("A non-null, not destroyed owner Thing is required to register for tickability");
+        }
 
-		private int currentIndex;
+        if (tickInterval < 1)
+        {
+            throw new Exception("Invalid tick interval: " + tickInterval);
+        }
 
-		private float listProgress;
+        if (entries.ContainsKey(owner))
+        {
+            Log.Warning("DistributedTickScheduler tickability already registered for: " + owner);
+            return;
+        }
 
-		private int nextCycleStart;
+        var tickableEntry = new TickableEntry(callback, tickInterval, owner);
+        GetTicker(tickInterval).Register(tickableEntry);
+        entries.Add(owner, tickableEntry);
+    }
 
-		private int numCalls;
+    public void UnregisterTickability(Thing owner)
+    {
+        if (!IsRegistered(owner))
+        {
+            throw new ArgumentException("Cannot unregister non-registered owner: " + owner);
+        }
 
-		private bool tickInProgress;
+        var tickableEntry = entries[owner];
+        var ticker = GetTicker(tickableEntry.interval);
+        ticker.Unregister(tickableEntry);
+        if (ticker.EntryCount == 0)
+        {
+            tickers.Remove(ticker);
+        }
 
-		public int NumCallsLastTick => numCalls;
+        entries.Remove(owner);
+    }
 
-		public int EntryCount => tickList.Count;
+    public bool IsRegistered(Thing owner)
+    {
+        return entries.ContainsKey(owner);
+    }
 
-		public ListTicker(int tickInterval, DistributedTickScheduler scheduler)
-		{
-			this.tickInterval = tickInterval;
-			this.scheduler = scheduler;
-		}
+    public IEnumerable<TickableEntry> DebugGetAllEntries()
+    {
+        return entries.Values;
+    }
 
-		public void Tick(int currentTick)
-		{
-			tickInProgress = true;
-			numCalls = 0;
-			if (nextCycleStart <= currentTick)
-			{
-				currentIndex = 0;
-				listProgress = 0f;
-				nextCycleStart = currentTick + tickInterval;
-			}
-			listProgress += (float)tickList.Count / (float)tickInterval;
-			int num = Mathf.Min(tickList.Count, Mathf.CeilToInt(listProgress));
-			while (currentIndex < num)
-			{
-				TickableEntry tickableEntry = tickList[currentIndex];
-				if (tickableEntry.owner.Spawned)
-				{
-					try
-					{
-						tickableEntry.callback();
-						numCalls++;
-					}
-					catch (Exception ex)
-					{
-						Log.Error($"DistributedTickScheduler caught an exception! {ex}");
-					}
-				}
-				else
-				{
-					scheduler.UnregisterAtEndOfTick(tickableEntry.owner);
-				}
-				currentIndex++;
-			}
-			tickInProgress = false;
-		}
+    public int DebugCountLastTickCalls()
+    {
+        return tickers.Sum(t => t.NumCallsLastTick);
+    }
 
-		public void Register(TickableEntry entry)
-		{
-			AssertNotTicking();
-			tickList.Add(entry);
-		}
+    public int DebugGetNumTickers()
+    {
+        return tickers.Count;
+    }
 
-		public void Unregister(TickableEntry entry)
-		{
-			AssertNotTicking();
-			tickList.Remove(entry);
-		}
+    internal void Initialize(int currentTick)
+    {
+        entries.Clear();
+        tickers.Clear();
+        lastProcessedTick = currentTick;
+    }
 
-		private void AssertNotTicking()
-		{
-			if (tickInProgress)
-			{
-				throw new Exception("Cannot register or unregister a callback while a tick is in progress");
-			}
-		}
-	}
+    internal void Tick(int currentTick)
+    {
+        if (lastProcessedTick < 0)
+        {
+            throw new Exception("Ticking not initialized DistributedTickScheduler");
+        }
 
-	private readonly Dictionary<Thing, TickableEntry> entries = new Dictionary<Thing, TickableEntry>();
+        lastProcessedTick = currentTick;
+        foreach (var listTicker in tickers)
+        {
+            listTicker.Tick(currentTick);
+        }
 
-	private readonly List<ListTicker> tickers = new List<ListTicker>();
+        UnregisterQueuedOwners();
+    }
 
-	private readonly Queue<Thing> unregisterQueue = new Queue<Thing>();
+    private void UnregisterAtEndOfTick(Thing owner)
+    {
+        unregisterQueue.Enqueue(owner);
+    }
 
-	private int lastProcessedTick = -1;
+    private void UnregisterQueuedOwners()
+    {
+        while (unregisterQueue.Count > 0)
+        {
+            var owner = unregisterQueue.Dequeue();
+            if (IsRegistered(owner))
+            {
+                UnregisterTickability(owner);
+            }
+        }
+    }
 
-	internal DistributedTickScheduler()
-	{
-	}
+    private ListTicker GetTicker(int interval)
+    {
+        foreach (var getTicker in tickers)
+        {
+            if (getTicker.tickInterval == interval)
+            {
+                return getTicker;
+            }
+        }
 
-	public void RegisterTickability(Action callback, int tickInterval, Thing owner)
-	{
-		if (lastProcessedTick < 0)
-		{
-			throw new Exception("Adding callback to not initialized DistributedTickScheduler");
-		}
-		if (owner == null || owner.Destroyed)
-		{
-			throw new Exception("A non-null, not destroyed owner Thing is required to register for tickability");
-		}
-		if (tickInterval < 1)
-		{
-			throw new Exception("Invalid tick interval: " + tickInterval);
-		}
-		if (entries.ContainsKey(owner))
-		{
-			Log.Warning("DistributedTickScheduler tickability already registered for: " + owner);
-			return;
-		}
-		TickableEntry tickableEntry = new TickableEntry(callback, tickInterval, owner);
-		GetTicker(tickInterval).Register(tickableEntry);
-		entries.Add(owner, tickableEntry);
-	}
+        var listTicker = new ListTicker(interval, this);
+        tickers.Add(listTicker);
+        return listTicker;
+    }
 
-	public void UnregisterTickability(Thing owner)
-	{
-		if (!IsRegistered(owner))
-		{
-			throw new ArgumentException("Cannot unregister non-registered owner: " + owner);
-		}
-		TickableEntry tickableEntry = entries[owner];
-		ListTicker ticker = GetTicker(tickableEntry.interval);
-		ticker.Unregister(tickableEntry);
-		if (ticker.EntryCount == 0)
-		{
-			tickers.Remove(ticker);
-		}
-		entries.Remove(owner);
-	}
+    public class TickableEntry(Action callback, int interval, Thing owner)
+    {
+        public readonly Action callback = callback;
 
-	public bool IsRegistered(Thing owner)
-	{
-		return entries.ContainsKey(owner);
-	}
+        public readonly int interval = interval;
 
-	public IEnumerable<TickableEntry> DebugGetAllEntries()
-	{
-		return entries.Values;
-	}
+        public readonly Thing owner = owner;
+    }
 
-	public int DebugCountLastTickCalls()
-	{
-		return tickers.Sum((ListTicker t) => t.NumCallsLastTick);
-	}
+    private class ListTicker(int tickInterval, DistributedTickScheduler scheduler)
+    {
+        public readonly int tickInterval = tickInterval;
 
-	public int DebugGetNumTickers()
-	{
-		return tickers.Count;
-	}
+        private readonly List<TickableEntry> tickList = [];
 
-	internal void Initialize(int currentTick)
-	{
-		entries.Clear();
-		tickers.Clear();
-		lastProcessedTick = currentTick;
-	}
+        private int currentIndex;
 
-	internal void Tick(int currentTick)
-	{
-		if (lastProcessedTick < 0)
-		{
-			throw new Exception("Ticking not initialized DistributedTickScheduler");
-		}
-		lastProcessedTick = currentTick;
-		for (int i = 0; i < tickers.Count; i++)
-		{
-			tickers[i].Tick(currentTick);
-		}
-		UnregisterQueuedOwners();
-	}
+        private float listProgress;
 
-	private void UnregisterAtEndOfTick(Thing owner)
-	{
-		unregisterQueue.Enqueue(owner);
-	}
+        private int nextCycleStart;
 
-	private void UnregisterQueuedOwners()
-	{
-		while (unregisterQueue.Count > 0)
-		{
-			Thing owner = unregisterQueue.Dequeue();
-			if (IsRegistered(owner))
-			{
-				UnregisterTickability(owner);
-			}
-		}
-	}
+        private bool tickInProgress;
 
-	private ListTicker GetTicker(int interval)
-	{
-		for (int i = 0; i < tickers.Count; i++)
-		{
-			if (tickers[i].tickInterval == interval)
-			{
-				return tickers[i];
-			}
-		}
-		ListTicker listTicker = new ListTicker(interval, this);
-		tickers.Add(listTicker);
-		return listTicker;
-	}
+        public int NumCallsLastTick { get; private set; }
+
+        public int EntryCount => tickList.Count;
+
+        public void Tick(int currentTick)
+        {
+            tickInProgress = true;
+            NumCallsLastTick = 0;
+            if (nextCycleStart <= currentTick)
+            {
+                currentIndex = 0;
+                listProgress = 0f;
+                nextCycleStart = currentTick + tickInterval;
+            }
+
+            listProgress += tickList.Count / (float)tickInterval;
+            var num = Mathf.Min(tickList.Count, Mathf.CeilToInt(listProgress));
+            while (currentIndex < num)
+            {
+                var tickableEntry = tickList[currentIndex];
+                if (tickableEntry.owner.Spawned)
+                {
+                    try
+                    {
+                        tickableEntry.callback();
+                        NumCallsLastTick++;
+                    }
+                    catch (Exception ex)
+                    {
+                        Log.Error($"DistributedTickScheduler caught an exception! {ex}");
+                    }
+                }
+                else
+                {
+                    scheduler.UnregisterAtEndOfTick(tickableEntry.owner);
+                }
+
+                currentIndex++;
+            }
+
+            tickInProgress = false;
+        }
+
+        public void Register(TickableEntry entry)
+        {
+            AssertNotTicking();
+            tickList.Add(entry);
+        }
+
+        public void Unregister(TickableEntry entry)
+        {
+            AssertNotTicking();
+            tickList.Remove(entry);
+        }
+
+        private void AssertNotTicking()
+        {
+            if (tickInProgress)
+            {
+                throw new Exception("Cannot register or unregister a callback while a tick is in progress");
+            }
+        }
+    }
 }

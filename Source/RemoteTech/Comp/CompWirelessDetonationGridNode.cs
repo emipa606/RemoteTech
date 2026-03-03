@@ -271,7 +271,7 @@ public class CompWirelessDetonationGridNode : ThingComp
         var map = ThingOwnerUtility.GetRootMap(parent.ParentHolder);
         var center = Position;
         var radius = Radius;
-        adjacentNodes = adjacentNodes ?? [];
+        adjacentNodes ??= [];
         adjacentNodes.Clear();
         lastRecacheTick = Find.TickManager.TicksGame;
         var candidates = map.listerBuildings.allBuildingsColonist;

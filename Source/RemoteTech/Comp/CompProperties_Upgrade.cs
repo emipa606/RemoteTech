@@ -24,10 +24,6 @@ public class CompProperties_Upgrade : CompProperties
     // number of ticks to complete the upgrade work. Reduced by construction skill
     public readonly int workAmount = 1000;
 
-    private string _effectDescription;
-
-    private string _materialsDescription;
-
     private string _prerequisitesDescription;
 
     // a description of what this upgrade does. Used when no stats are modified
@@ -54,9 +50,9 @@ public class CompProperties_Upgrade : CompProperties
     {
         get
         {
-            if (_effectDescription != null)
+            if (field != null)
             {
-                return _effectDescription;
+                return field;
             }
 
             var s = new StringBuilder("Upgrade_descriptionEffects".Translate());
@@ -85,9 +81,9 @@ public class CompProperties_Upgrade : CompProperties
                 }
             }
 
-            _effectDescription = s.ToString();
+            field = s.ToString();
 
-            return _effectDescription;
+            return field;
         }
     }
 
@@ -95,9 +91,9 @@ public class CompProperties_Upgrade : CompProperties
     {
         get
         {
-            if (_materialsDescription != null)
+            if (field != null)
             {
-                return _materialsDescription;
+                return field;
             }
 
             var s = new StringBuilder("Upgrade_descriptionCost".Translate());
@@ -113,9 +109,9 @@ public class CompProperties_Upgrade : CompProperties
                 }
             }
 
-            _materialsDescription = costList.Count > 0 ? s.ToString() : string.Empty;
+            field = costList.Count > 0 ? s.ToString() : string.Empty;
 
-            return _materialsDescription;
+            return field;
         }
     }
 

@@ -8,21 +8,6 @@ Research different types of remote explosives to unlock available recipes.</rxBe
   <!-- EN: Idle power relay -->
   <rxBench.comps.CompUpgrade-0.label>Idle power relay</rxBench.comps.CompUpgrade-0.label>
   <!-- EN: Effects: The workbench will consume very little power when not in use. -->
-  <rxBench.comps.CompUpgrade-0._effectDescription>Effects: The workbench will consume very little power when not in use.</rxBench.comps.CompUpgrade-0._effectDescription>
-  <!-- EN: Required materials: 2x component -->
-  <rxBench.comps.CompUpgrade-0._materialsDescription>Required materials: 2x component</rxBench.comps.CompUpgrade-0._materialsDescription>
-  <!-- EN: The workbench will consume very little power when not in use. -->
-  <rxBench.comps.CompUpgrade-0.effectDescription>The workbench will consume very little power when not in use.</rxBench.comps.CompUpgrade-0.effectDescription>
-  <!-- EN: High-quality tools -->
-  <rxBench.comps.CompUpgrade-1.label>High-quality tools</rxBench.comps.CompUpgrade-1.label>
-  <!-- EN: Effects: Boost production speed by 25% by making harder and more precise tools.
-\nWork speed factor: x125% -->
-  <rxBench.comps.CompUpgrade-1._effectDescription>Effects: Boost production speed by 25% by making harder and more precise tools.
-Work speed factor: x125%</rxBench.comps.CompUpgrade-1._effectDescription>
-  <!-- EN: Required materials: 2x advanced component, 40x plasteel -->
-  <rxBench.comps.CompUpgrade-1._materialsDescription>Required materials: 2x advanced component, 40x plasteel</rxBench.comps.CompUpgrade-1._materialsDescription>
-  <!-- EN: Boost production speed by 25% by making harder and more precise tools. -->
-  <rxBench.comps.CompUpgrade-1.effectDescription>Boost production speed by 25% by making harder and more precise tools.</rxBench.comps.CompUpgrade-1.effectDescription>
   <!-- EN: manual detonator -->
   <rxDetonatorManual.label>manual detonator</rxDetonatorManual.label>
   <!-- EN: A simple plunger-type detonator. When activated, sends a pulse along the attached detonator wire to all connected explosives, lighting their fuses.\nRight-click with a drafted colonist for better timing. -->
@@ -74,9 +59,6 @@ The white overlay shows nearby mountain roof, while the area around the charge i
   <!-- EN: More power! -->
   <rxRadioMast.comps.CompUpgrade.label>More power!</rxRadioMast.comps.CompUpgrade.label>
   <!-- EN: Effects: Detonator signal range: x150%, Power consumption: x200% -->
-  <rxRadioMast.comps.CompUpgrade._effectDescription>Effects: Detonator signal range: x150%, Power consumption: x200%</rxRadioMast.comps.CompUpgrade._effectDescription>
-  <!-- EN: Required materials: 2x component -->
-  <rxRadioMast.comps.CompUpgrade._materialsDescription>Required materials: 2x component</rxRadioMast.comps.CompUpgrade._materialsDescription>
   <!-- EN: remote explosive charge -->
   <rxRemoteBombPlaced.label>remote explosive charge</rxRemoteBombPlaced.label>
   <!-- EN: An explosive canister with a radio trigger.\nCraft at the Explosives Workshop.\nArm, then detonate from the Remote Explosives Console. -->
@@ -130,9 +112,4 @@ Right-click with a drafted colonist for better timing.</rxTableDetonator.descrip
   <!-- EN: Idle power relay -->
   <rxTableDetonator.comps.CompUpgrade-2.label>Idle power relay</rxTableDetonator.comps.CompUpgrade-2.label>
   <!-- EN: Effects: The detonator will consume very little power when not in use. -->
-  <rxTableDetonator.comps.CompUpgrade-2._effectDescription>Effects: The detonator will consume very little power when not in use.</rxTableDetonator.comps.CompUpgrade-2._effectDescription>
-  <!-- EN: Required materials: 4x component -->
-  <rxTableDetonator.comps.CompUpgrade-2._materialsDescription>Required materials: 4x component</rxTableDetonator.comps.CompUpgrade-2._materialsDescription>
-  <!-- EN: The detonator will consume very little power when not in use. -->
-  <rxTableDetonator.comps.CompUpgrade-2.effectDescription>The detonator will consume very little power when not in use.</rxTableDetonator.comps.CompUpgrade-2.effectDescription>
 </LanguageData>

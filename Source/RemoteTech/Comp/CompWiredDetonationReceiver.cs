@@ -1,6 +1,5 @@
-﻿using HugsLib;
+﻿using System;
 using RimWorld;
-using System;
 using Verse;
 
 namespace RemoteTech;
@@ -10,8 +9,8 @@ namespace RemoteTech;
 /// </summary>
 public class CompWiredDetonationReceiver : CompDetonationGridNode
 {
+    private static TickDelayScheduler tickDelayScheduler;
 
-    static TickDelayScheduler tickDelayScheduler = null;
     public void ReceiveSignal(int delayTicks)
     {
         if (parent is Building_RemoteExplosive { IsArmed: false })
@@ -26,6 +25,7 @@ public class CompWiredDetonationReceiver : CompDetonationGridNode
         {
             tickDelayScheduler = gameComponent.scheduler;
         }
+
         // check if valid
         if (tickDelayScheduler == null || tickDelayScheduler.lastProcessedTick < 0)
         {

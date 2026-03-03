@@ -1,5 +1,8 @@
 # Changelog for RemoteTech
 
+1.6.4 - Red Button fix
+
+
 1.6.3 - Removed HugsLib requirement, thanks Zaljerem!
 Removed Publicizer dependency
 Used DeepL to update translations for ChineseSimplified, French, German

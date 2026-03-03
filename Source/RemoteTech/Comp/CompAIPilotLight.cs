@@ -26,8 +26,6 @@ public class CompAIPilotLight : ThingComp
     private readonly ValueInterpolator offsetXAnim = new();
     private readonly ValueInterpolator offsetZAnim = new();
 
-    private bool _enabled = true;
-
     private GraphicData_Blinker blinker;
 
     // saved
@@ -38,9 +36,9 @@ public class CompAIPilotLight : ThingComp
 
     public bool Enabled
     {
-        get => _enabled && (powerComp == null || powerComp.PowerOn);
-        set => _enabled = value;
-    }
+        get => field && (powerComp == null || powerComp.PowerOn);
+        set;
+    } = true;
 
     private float CurrentTargetInterestTime =>
         currentTarget is Pawn ? PawnInterestExpirationTime : ThingInterestExpirationTime;

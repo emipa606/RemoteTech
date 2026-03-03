@@ -103,10 +103,7 @@ public class AutoReplaceWatcher : IExposable
             }
 
             var replaceComp = building.TryGetComp<CompAutoReplaceable>();
-            if (replaceComp != null)
-            {
-                replaceComp.AutoReplaceEnabled = true;
-            }
+            replaceComp?.AutoReplaceEnabled = true;
 
             pendingSettings.RemoveAt(i);
             break;

@@ -32,11 +32,13 @@ public class GasCloud : Thing
     private static int GlobalOffsetCounter;
     private static readonly List<GasCloud> adjacentBuffer = new(4);
     private static readonly List<IntVec3> positionBuffer = new(4);
+
+    private static TickDelayScheduler tickDelayScheduler;
+    private static DistributedTickScheduler distributedTickScheduler;
     private readonly ValueInterpolator interpolatedOffsetX;
     private readonly ValueInterpolator interpolatedOffsetY;
     private readonly ValueInterpolator interpolatedRotation;
     private readonly ValueInterpolator interpolatedScale;
-    private string cachedMouseoverLabel;
 
     //saved fields
     private float concentration;
@@ -70,9 +72,9 @@ public class GasCloud : Thing
     {
         get
         {
-            if (cachedMouseoverLabel != null && !(mouseoverLabelCacheTime < Time.realtimeSinceStartup - .5f))
+            if (field != null && !(mouseoverLabelCacheTime < Time.realtimeSinceStartup - .5f))
             {
-                return cachedMouseoverLabel;
+                return field;
             }
 
             var effectivenessPercent =
@@ -80,23 +82,20 @@ public class GasCloud : Thing
             if (concentration >= 1000)
             {
                 var concentrationThousands = Math.Round(concentration / 1000, 1);
-                cachedMouseoverLabel =
+                field =
                     "GasCloud_statusReadout_high".Translate(LabelCap, concentrationThousands, effectivenessPercent);
             }
             else
             {
-                cachedMouseoverLabel = "GasCloud_statusReadout_low".Translate(LabelCap, Mathf.Round(concentration),
+                field = "GasCloud_statusReadout_low".Translate(LabelCap, Mathf.Round(concentration),
                     effectivenessPercent);
             }
 
             mouseoverLabelCacheTime = Time.realtimeSinceStartup;
 
-            return cachedMouseoverLabel;
+            return field;
         }
     }
-
-    static TickDelayScheduler tickDelayScheduler = null;
-    static DistributedTickScheduler distributedTickScheduler = null;
 
     public override void SpawnSetup(Map map, bool respawningAfterLoad)
     {
@@ -115,6 +114,7 @@ public class GasCloud : Thing
             tickDelayScheduler = gameComponent.scheduler;
             distributedTickScheduler = gameComponent.distScheduler;
         }
+
         // check if valid
         if (tickDelayScheduler == null || tickDelayScheduler.lastProcessedTick < 0)
         {

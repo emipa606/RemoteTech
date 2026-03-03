@@ -1,13 +1,14 @@
 ﻿using Verse;
 
 namespace RemoteTech;
+
 public class GameComponent_TickDelayScheduler : GameComponent
 {
-    public TickDelayScheduler scheduler;
     public DistributedTickScheduler distScheduler;
+    public TickDelayScheduler scheduler;
 
     public GameComponent_TickDelayScheduler(Game game)
-    {        
+    {
     }
 
     public override void GameComponentTick()
@@ -22,34 +23,38 @@ public class GameComponent_TickDelayScheduler : GameComponent
             InitDTS(); // Initialize scheduler if it’s null
         }
 
-        int ticksGame = Find.TickManager.TicksGame;
-        scheduler.Tick(ticksGame);
-        distScheduler.Tick(ticksGame);
+        var ticksGame = Find.TickManager.TicksGame;
+        scheduler?.Tick(ticksGame);
+        distScheduler?.Tick(ticksGame);
         //base.GameComponentTick();
     }
 
     private void InitTDS()
     {
-        if (scheduler == null)
+        if (scheduler != null)
         {
-            scheduler = new TickDelayScheduler();
-            int ticks = Find.TickManager.TicksGame;
-            //Log.Message($"Initializing scheduler at ticks: {ticks}");
-            scheduler.Initialize(ticks);            
-            //Log.Message($"Last processed tick: {scheduler.lastProcessedTick}");
+            return;
         }
+
+        scheduler = new TickDelayScheduler();
+        var ticks = Find.TickManager.TicksGame;
+        //Log.Message($"Initializing scheduler at ticks: {ticks}");
+        scheduler.Initialize(ticks);
+        //Log.Message($"Last processed tick: {scheduler.lastProcessedTick}");
     }
 
     private void InitDTS()
     {
-        if (distScheduler == null)
+        if (distScheduler != null)
         {
-            distScheduler = new DistributedTickScheduler();
-            int ticks = Find.TickManager.TicksGame;
-            //Log.Message($"Initializing scheduler at ticks: {ticks}");
-            distScheduler.Initialize(ticks);
-            //Log.Message($"Last processed tick: {scheduler.lastProcessedTick}");
+            return;
         }
+
+        distScheduler = new DistributedTickScheduler();
+        var ticks = Find.TickManager.TicksGame;
+        //Log.Message($"Initializing scheduler at ticks: {ticks}");
+        distScheduler.Initialize(ticks);
+        //Log.Message($"Last processed tick: {scheduler.lastProcessedTick}");
     }
 
     public override void StartedNewGame()

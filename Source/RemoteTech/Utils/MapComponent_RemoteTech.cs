@@ -1,4 +1,5 @@
-﻿using Verse;
+﻿using System;
+using Verse;
 
 namespace RemoteTech;
 
@@ -38,10 +39,9 @@ public class MapComponent_RemoteTech : MapComponent
         {
             PlayerAvoidanceGrids.DiscardMap(map);
         }
-        catch (System.Exception e)
+        catch (Exception e)
         {
             Log.Error($"RemoteTech: Error in MapComponent_RemoteTech.MapRemoved: {e}");
         }
     }
-
 }

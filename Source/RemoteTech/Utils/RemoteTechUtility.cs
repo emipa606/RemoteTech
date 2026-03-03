@@ -2,10 +2,10 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
+using HarmonyLib;
 using RimWorld;
 using UnityEngine;
 using Verse;
-using HarmonyLib;
 
 namespace RemoteTech;
 
@@ -15,15 +15,6 @@ namespace RemoteTech;
 [StaticConstructorOnStartup]
 public static class RemoteTechUtility
 {
-    public static FieldInfo BasePowerConsumptionField;
-    public static MethodInfo GetAtMethod;
-
-    static RemoteTechUtility()
-    {
-        BasePowerConsumptionField = AccessTools.Field(typeof(CompProperties_Power), "basePowerConsumption");
-        GetAtMethod = AccessTools.Method(typeof(ThingOwner), "GetAt");
-    }
-
     public enum ChannelType
     {
         None,
@@ -35,8 +26,16 @@ public static class RemoteTechUtility
 
     // how long it will take to trigger an additional explosive
     private const int TicksBetweenTriggers = 2;
+    public static FieldInfo BasePowerConsumptionField;
+    public static MethodInfo GetAtMethod;
 
-    static TickDelayScheduler tickDelayScheduler = null;
+    private static TickDelayScheduler tickDelayScheduler;
+
+    static RemoteTechUtility()
+    {
+        BasePowerConsumptionField = AccessTools.Field(typeof(CompProperties_Power), "basePowerConsumption");
+        GetAtMethod = AccessTools.Method(typeof(ThingOwner), "GetAt");
+    }
 
     public static ChannelType GetChannelsUnlockLevel()
     {
@@ -81,6 +80,7 @@ public static class RemoteTechUtility
         {
             tickDelayScheduler = gameComponent.scheduler;
         }
+
         // check if valid
         if (tickDelayScheduler == null || tickDelayScheduler.lastProcessedTick < 0)
         {
@@ -296,48 +296,6 @@ public static class RemoteTechUtility
         cloud.ReceiveConcentration(amount);
     }
 
-    public static CompUpgrade FirstUpgradeableComp(this Thing t)
-    {
-        if (t is not ThingWithComps comps)
-        {
-            return null;
-        }
-
-        foreach (var thingComp in comps.AllComps)
-        {
-            if (thingComp is CompUpgrade { WantsWork: true } comp)
-            {
-                return comp;
-            }
-        }
-
-        return null;
-    }
-
-    public static CompUpgrade TryGetUpgrade(this Thing t, string upgradeReferenceId)
-    {
-        if (t is not ThingWithComps comps)
-        {
-            return null;
-        }
-
-        foreach (var thingComp in comps.AllComps)
-        {
-            if (thingComp is CompUpgrade comp && comp.Props.referenceId == upgradeReferenceId)
-            {
-                return comp;
-            }
-        }
-
-        return null;
-    }
-
-    public static bool IsUpgradeCompleted(this Thing t, string upgradeReferenceId)
-    {
-        var upgrade = t.TryGetUpgrade(upgradeReferenceId);
-        return upgrade is { Complete: true };
-    }
-
     public static void DrawFlareOverlay(Graphic overlay, Vector3 drawPos, GraphicData_Blinker props, float alpha = 1f,
         float scaleZ = 1f)
     {
@@ -381,47 +339,6 @@ public static class RemoteTechUtility
         }
     }
 
-    public static T RequireComp<T>(this ThingWithComps thing) where T : ThingComp
-    {
-        var c = thing.GetComp<T>();
-        if (c == null)
-        {
-            Log.Error(
-                $"{thing.GetType().Name} requires ThingComp of type {nameof(T)} in def {thing.def.defName}");
-        }
-
-        return c;
-    }
-
-    public static T RequireComponent<T>(this ThingWithComps thing, T component)
-    {
-        if (component == null)
-        {
-            Log.Error(
-                $"{thing.GetType().Name} requires {nameof(T)} in def {thing.def.defName}");
-        }
-
-        return component;
-    }
-
-    public static void RequireComponent<T>(this ThingComp comp, T component)
-    {
-        if (component == null)
-        {
-            Log.Error(
-                $"{comp.GetType().Name} requires {nameof(T)} in def {comp.parent.def.defName}");
-        }
-    }
-
-    public static void RequireTicker(this ThingComp comp, TickerType type)
-    {
-        if (comp.parent.def.tickerType != type)
-        {
-            Log.Error(
-                $"{comp.GetType().Name} requires tickerType:{type} in def {comp.parent.def.defName}");
-        }
-    }
-
     public static CachedValue<float> GetCachedStat(this Thing thing, StatDef stat,
         int recacheInterval = GenTicks.TicksPerRealSecond)
     {
@@ -431,5 +348,97 @@ public static class RemoteTechUtility
     public static bool ApproximatelyEquals(this float value1, float value2, float tolerance = float.Epsilon)
     {
         return Math.Abs(value1 - value2) < tolerance;
+    }
+
+    extension(Thing t)
+    {
+        public CompUpgrade FirstUpgradeableComp()
+        {
+            if (t is not ThingWithComps comps)
+            {
+                return null;
+            }
+
+            foreach (var thingComp in comps.AllComps)
+            {
+                if (thingComp is CompUpgrade { WantsWork: true } comp)
+                {
+                    return comp;
+                }
+            }
+
+            return null;
+        }
+
+        public CompUpgrade TryGetUpgrade(string upgradeReferenceId)
+        {
+            if (t is not ThingWithComps comps)
+            {
+                return null;
+            }
+
+            foreach (var thingComp in comps.AllComps)
+            {
+                if (thingComp is CompUpgrade comp && comp.Props.referenceId == upgradeReferenceId)
+                {
+                    return comp;
+                }
+            }
+
+            return null;
+        }
+
+        public bool IsUpgradeCompleted(string upgradeReferenceId)
+        {
+            var upgrade = t.TryGetUpgrade(upgradeReferenceId);
+            return upgrade is { Complete: true };
+        }
+    }
+
+    extension(ThingWithComps thing)
+    {
+        public T RequireComp<T>() where T : ThingComp
+        {
+            var c = thing.GetComp<T>();
+            if (c == null)
+            {
+                Log.Error(
+                    $"{thing.GetType().Name} requires ThingComp of type {nameof(T)} in def {thing.def.defName}");
+            }
+
+            return c;
+        }
+
+        public T RequireComponent<T>(T component)
+        {
+            if (component == null)
+            {
+                Log.Error(
+                    $"{thing.GetType().Name} requires {nameof(T)} in def {thing.def.defName}");
+            }
+
+            return component;
+        }
+    }
+
+    extension(ThingComp comp)
+    {
+        public void RequireComponent<T>(T component)
+        {
+            if (component == null)
+            {
+                Log.Error(
+                    $"{comp.GetType().Name} requires {nameof(T)} in def {comp.parent.def.defName}");
+            }
+        }
+
+        public void RequireTicker(TickerType type)
+        {
+            if (comp.parent.def.tickerType != type)
+            {
+                Log.Error(
+                    $"{comp.GetType().Name} requires tickerType:{type} in def {comp.parent.def.defName}");
+            }
+        }
     }
 }

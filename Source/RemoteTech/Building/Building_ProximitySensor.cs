@@ -86,7 +86,7 @@ public class Building_ProximitySensor : Building, ISwitchable, ISensorSettingsPr
     {
         base.ExposeData();
         Scribe_Deep.Look(ref slice, "slice");
-        Scribe_Collections.Look(ref trackedPawns, "trackedPawns",false,  LookMode.Reference);
+        Scribe_Collections.Look(ref trackedPawns, "trackedPawns", false, LookMode.Reference);
         Scribe_Values.Look(ref lastTriggeredTick, "lastTriggered");
         Scribe_Deep.Look(ref settings, "settings");
         Scribe_Deep.Look(ref pendingSettings, "pendingSettings");
@@ -294,20 +294,14 @@ public class Building_ProximitySensor : Building, ISwitchable, ISensorSettingsPr
         area = new RadialGradientArea(Position, rangeStat.ValueRecached);
         slice = new Arc(slice.StartAngle, angleStat.ValueRecached);
         speedStat.Recache();
-        if (wirelessComp != null)
-        {
-            wirelessComp.Enabled = this.IsUpgradeCompleted(WirelessUpgrageReferenceId);
-        }
+        wirelessComp?.Enabled = this.IsUpgradeCompleted(WirelessUpgrageReferenceId);
 
         channelsComp?.Configure(true, true, true,
             this.IsUpgradeCompleted(WirelessUpgrageReferenceId)
                 ? RemoteTechUtility.ChannelType.Advanced
                 : RemoteTechUtility.ChannelType.None);
         var brainIsOn = (brainComp?.Complete ?? false) && PowerOn;
-        if (lightComp != null)
-        {
-            lightComp.Enabled = brainIsOn;
-        }
+        lightComp?.Enabled = brainIsOn;
 
         glowerComp?.ToggleGlow(brainIsOn);
     }

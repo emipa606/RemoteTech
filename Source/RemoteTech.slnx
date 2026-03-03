@@ -6,4 +6,84 @@
     <BuildType Name="Release" />
   </Configurations>
   <Project Path="RemoteTech/RemoteTech.csproj" />
+  <Folder Name="/XML/1.6/Defs/StatDefs/">
+    <File Path="../1.6/Defs/StatDefs/Stats_Apparel.xml" />
+    <File Path="../1.6/Defs/StatDefs/Stats_Misc.xml" />
+  </Folder>
+  <Folder Name="/XML/1.6/Defs/JobDefs/">
+    <File Path="../1.6/Defs/JobDefs/Jobs_RemoteExplosives.xml" />
+  </Folder>
+  <Folder Name="/XML/About/">
+    <File Path="../About/about.xml" />
+  </Folder>
+  <Folder Name="/XML/1.6/Defs/RecipeDefs/">
+    <File Path="../1.6/Defs/RecipeDefs/Recipes_Production.xml" />
+  </Folder>
+  <Folder Name="/XML/1.6/Defs/MentalStateDefs/">
+    <File Path="../1.6/Defs/MentalStateDefs/MentalStates.xml" />
+  </Folder>
+  <Folder Name="/XML/1.6/Defs/Effects/">
+    <File Path="../1.6/Defs/Effects/Effecters.xml" />
+    <File Path="../1.6/Defs/Effects/Motes.xml" />
+  </Folder>
+  <Folder Name="/XML/1.6/Defs/HediffDefs/">
+    <File Path="../1.6/Defs/HediffDefs/Hediffs_Misc.xml" />
+  </Folder>
+  <Folder Name="/XML/1.6/Defs/ResearchTabDefs/">
+    <File Path="../1.6/Defs/ResearchTabDefs/RemoteExplosivesTab.xml" />
+  </Folder>
+  <Folder Name="/XML/1.6/Defs/DesignationCategoryDefs/">
+    <File Path="../1.6/Defs/DesignationCategoryDefs/DesignationCategories.xml" />
+  </Folder>
+  <Folder Name="/XML/1.6/Defs/SoundDefs/">
+    <File Path="../1.6/Defs/SoundDefs/RemoteExplosivesSounds.xml" />
+  </Folder>
+  <Folder Name="/XML/1.6/Defs/TraderStockInjectorDefs/">
+    <File Path="../1.6/Defs/TraderStockInjectorDefs/TraderStockInjectors.xml" />
+  </Folder>
+  <Folder Name="/XML/1.6/Defs/ApparelLayerDefs/">
+    <File Path="../1.6/Defs/ApparelLayerDefs/ApparelLayerDefs.xml" />
+  </Folder>
+  <Folder Name="/XML/1.6/Defs/">
+    <File Path="../1.6/Defs/UpdateInfo.xml" />
+  </Folder>
+  <Folder Name="/XML/1.6/Defs/DamageDefs/">
+    <File Path="../1.6/Defs/DamageDefs/Damages_Misc.xml" />
+  </Folder>
+  <Folder Name="/XML/1.6/Defs/ThingCategoryDefs/">
+    <File Path="../1.6/Defs/ThingCategoryDefs/ThingCategories.xml" />
+  </Folder>
+  <Folder Name="/XML/1.6/Defs/DesignationDefs/">
+    <File Path="../1.6/Defs/DesignationDefs/Designations.xml" />
+  </Folder>
+  <Folder Name="/XML/1.6/Defs/MessageTypeDefs/">
+    <File Path="../1.6/Defs/MessageTypeDefs/MessageTypeDefs.xml" />
+  </Folder>
+  <Folder Name="/XML/1.6/Defs/WorkGiverDefs/">
+    <File Path="../1.6/Defs/WorkGiverDefs/WorkGivers_RemoteExplosives.xml" />
+  </Folder>
+  <Folder Name="/XML/1.6/Defs/StatCategoryDefs/">
+    <File Path="../1.6/Defs/StatCategoryDefs/StatCategories.xml" />
+  </Folder>
+  <Folder Name="/XML/1.6/Defs/KeyBindingDefs/">
+    <File Path="../1.6/Defs/KeyBindingDefs/KeyBindings.xml" />
+  </Folder>
+  <Folder Name="/XML/1.6/Defs/ThinkTreeDefs/">
+    <File Path="../1.6/Defs/ThinkTreeDefs/ThinkTrees.xml" />
+  </Folder>
+  <Folder Name="/XML/1.6/Defs/KeyBindingCategoryDefs/">
+    <File Path="../1.6/Defs/KeyBindingCategoryDefs/KeyBindingCategories.xml" />
+  </Folder>
+  <Folder Name="/XML/1.6/Defs/ResearchProjectDefs/">
+    <File Path="../1.6/Defs/ResearchProjectDefs/ResearchProjects_Misc.xml" />
+  </Folder>
+  <Folder Name="/XML/1.6/Defs/ThingDefs/">
+    <File Path="../1.6/Defs/ThingDefs/Apparel.xml" />
+    <File Path="../1.6/Defs/ThingDefs/Buildings_Explosives.xml" />
+    <File Path="../1.6/Defs/ThingDefs/Buildings_Misc.xml" />
+    <File Path="../1.6/Defs/ThingDefs/Gasses.xml" />
+    <File Path="../1.6/Defs/ThingDefs/Items_Misc.xml" />
+    <File Path="../1.6/Defs/ThingDefs/Items_Resource_Manufactured.xml" />
+    <File Path="../1.6/Defs/ThingDefs/Plants.xml" />
+  </Folder>
 </Solution>

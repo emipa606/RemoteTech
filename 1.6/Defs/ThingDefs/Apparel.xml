@@ -73,7 +73,7 @@ The filters wear out fairly quickly, so it's recommended to wear this only when 
       <MedicineIndustrial>2</MedicineIndustrial>
     </costList>
     <equippedStatOffsets>
-      <ToxicResistance>0.80</ToxicResistance>
+      <ToxicEnvironmentResistance>0.8</ToxicEnvironmentResistance>
       <ShootingAccuracyPawn>-0.05</ShootingAccuracyPawn>
       <SocialImpact>-0.2</SocialImpact>
     </equippedStatOffsets>

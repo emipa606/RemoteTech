@@ -41,7 +41,8 @@ public class TickDelayScheduler
             }
 
             entries.RemoveFirst();
-            if (!value.repeat || !DoCallback(value))
+            var callbackSucceeded = DoCallback(value);
+            if (!value.repeat || !callbackSucceeded)
             {
                 continue;
             }

@@ -21,97 +21,107 @@ public static class HugsLibUtility
     public static bool ControlIsHeld => Input.GetKey(KeyCode.LeftControl) || Input.GetKey(KeyCode.RightControl) ||
                                         Input.GetKey(KeyCode.LeftCommand) || Input.GetKey(KeyCode.RightCommand);
 
-    public static string ListElements(this IEnumerable list)
-    {
-        return list.Join(", ", true);
-    }
 
-    public static string Join(this IEnumerable list, string separator, bool explicitNullValues = false)
+    extension(Thing thing)
     {
-        if (list == null)
+        public bool HasDesignation(DesignationDef def)
         {
-            return "";
-        }
-
-        var stringBuilder = new StringBuilder();
-        var flag = false;
-        foreach (var item in list)
-        {
-            if (flag)
+            if (thing.Map == null || thing.Map.designationManager == null)
             {
-                stringBuilder.Append(separator);
+                return false;
             }
 
-            flag = true;
-            if (item != null || explicitNullValues)
+            return thing.Map.designationManager.DesignationOn(thing, def) != null;
+        }
+
+        public void ToggleDesignation(DesignationDef def, bool enable)
+        {
+            if (thing.Map == null || thing.Map.designationManager == null)
             {
-                stringBuilder.Append(item != null ? item.ToString() : "[null]");
+                throw new Exception("Thing must belong to a map to toggle designations on it");
+            }
+
+            var designation = thing.Map.designationManager.DesignationOn(thing, def);
+            switch (enable)
+            {
+                case true when designation == null:
+                    thing.Map.designationManager.AddDesignation(new Designation(thing, def));
+                    break;
+                case false when designation != null:
+                    thing.Map.designationManager.RemoveDesignation(designation);
+                    break;
+            }
+        }
+    }
+
+
+    extension(IEnumerable list)
+    {
+        public string ListElements()
+        {
+            return list.Join(", ", true);
+        }
+
+        public string Join(string separator, bool explicitNullValues = false)
+        {
+            if (list == null)
+            {
+                return "";
+            }
+
+            var stringBuilder = new StringBuilder();
+            var seenLine = false;
+            foreach (var item in list)
+            {
+                if (seenLine)
+                {
+                    stringBuilder.Append(separator);
+                }
+
+                seenLine = true;
+                if (item != null || explicitNullValues)
+                {
+                    stringBuilder.Append(item != null ? item.ToString() : "[null]");
+                }
+            }
+
+            return stringBuilder.ToString();
+        }
+    }
+
+
+    extension(IntVec3 pos)
+    {
+        public void ToggleDesignation(DesignationDef def, bool enable, Map map = null)
+        {
+            map ??= Find.CurrentMap;
+
+            if (map == null || map.designationManager == null)
+            {
+                throw new Exception("ToggleDesignation requires a map argument or VisibleMap must be set");
+            }
+
+            var designation = map.designationManager.DesignationAt(pos, def);
+            if (enable && designation == null)
+            {
+                map.designationManager.AddDesignation(new Designation(pos, def));
+            }
+            else if (!enable && designation != null)
+            {
+                map.designationManager.RemoveDesignation(designation);
             }
         }
 
-        return stringBuilder.ToString();
-    }
-
-
-    public static bool HasDesignation(this Thing thing, DesignationDef def)
-    {
-        if (thing.Map == null || thing.Map.designationManager == null)
+        public bool HasDesignation(DesignationDef def, Map map = null)
         {
-            return false;
-        }
+            map ??= Find.CurrentMap;
 
-        return thing.Map.designationManager.DesignationOn(thing, def) != null;
-    }
+            if (map == null || map.designationManager == null)
+            {
+                return false;
+            }
 
-
-    public static void ToggleDesignation(this IntVec3 pos, DesignationDef def, bool enable, Map map = null)
-    {
-        map ??= Find.CurrentMap;
-
-        if (map == null || map.designationManager == null)
-        {
-            throw new Exception("ToggleDesignation requires a map argument or VisibleMap must be set");
-        }
-
-        var designation = map.designationManager.DesignationAt(pos, def);
-        if (enable && designation == null)
-        {
-            map.designationManager.AddDesignation(new Designation(pos, def));
-        }
-        else if (!enable && designation != null)
-        {
-            map.designationManager.RemoveDesignation(designation);
-        }
-    }
-
-    public static bool HasDesignation(this IntVec3 pos, DesignationDef def, Map map = null)
-    {
-        map ??= Find.CurrentMap;
-
-        if (map == null || map.designationManager == null)
-        {
-            return false;
-        }
-
-        return map.designationManager.DesignationAt(pos, def) != null;
-    }
-
-
-    public static void ToggleDesignation(this Thing thing, DesignationDef def, bool enable)
-    {
-        if (thing.Map == null || thing.Map.designationManager == null)
-        {
-            throw new Exception("Thing must belong to a map to toggle designations on it");
-        }
-
-        var designation = thing.Map.designationManager.DesignationOn(thing, def);
-        if (enable && designation == null)
-        {
-            thing.Map.designationManager.AddDesignation(new Designation(thing, def));
-        }
-        else if (!enable && designation != null)
-        {
-            thing.Map.designationManager.RemoveDesignation(designation);
+            return map.designationManager.DesignationAt(pos, def) != null;
         }
     }
 

@@ -1,5 +1,8 @@
 # Changelog for RemoteTech
 
+1.6.6 - Explosives should now explode at the same time
+
+
 1.6.5 - Fixed gasmask
 
 

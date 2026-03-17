@@ -55,7 +55,7 @@ public class RemoteTechController
         else
         {
             // update settings reference if re-loaded
-            Instance.settings?.GetType(); // no-op to avoid warning
+            _ = Instance.settings?.GetType();
             Instance.UpdateFromSettings(settings);
         }
     }
@@ -255,7 +255,7 @@ public class RemoteTechController
         return recipeCopy;
     }
 
-    private void InjectVanillaExplosivesComps()
+    private static void InjectVanillaExplosivesComps()
     {
         try
         {
@@ -284,7 +284,7 @@ public class RemoteTechController
         }
     }
 
-    private void InjectUpgradeableStatParts()
+    private static void InjectUpgradeableStatParts()
     {
         try
         {
@@ -368,7 +368,7 @@ public class RemoteTechController
         }
     }
 
-    private ThingDef GetDefWithWarning(string defName)
+    private static ThingDef GetDefWithWarning(string defName)
     {
         var def = DefDatabase<ThingDef>.GetNamedSilentFail(defName);
         if (def == null)
@@ -379,7 +379,7 @@ public class RemoteTechController
         return def;
     }
 
-    private void RemoveFoamWallsFromMeteoritePool()
+    private static void RemoveFoamWallsFromMeteoritePool()
     {
         // foam walls are mineable, but should not appear in a meteorite drop
         ThingSetMaker_Meteorite.nonSmoothedMineables.Remove(Resources.Thing.rxFoamWall);

@@ -36,7 +36,7 @@ public class CachedValue<T>
         {
             if (!IsValid)
             {
-                throw new InvalidOperationException($"{nameof(CachedValue<T>)} cannot get Value: not initialized");
+                throw new InvalidOperationException($"{nameof(CachedValue<>)} cannot get Value: not initialized");
             }
 
             var currentTick = GenTicks.TicksGame;

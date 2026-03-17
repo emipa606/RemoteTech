@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
@@ -93,7 +93,8 @@ public static class RemoteTechUtility
         // closer ones to their transmitters will go off first. This is used to simulate a bit of signal delay
         var sortedByDistance = sample
             .OrderBy(pair => pair.Transmitter.Position.DistanceToSquared(pair.Receiver.Position))
-            .Select(pair => pair.Receiver);
+            .Select(pair => pair.Receiver)
+            .ToList();
         var counter = 0;
         foreach (var receiver in sortedByDistance)
         {
@@ -103,7 +104,7 @@ public static class RemoteTechUtility
                 {
                     receiver.ReceiveWirelessSignal(origin);
                 }
-            }, TicksBetweenTriggers * counter++, GetHighestHolderInMap(origin));
+            }, TicksBetweenTriggers * counter++, receiver as Thing ?? (receiver as ThingComp)?.parent);
         }
 
         if (counter == 0 && noTargetsMessage)

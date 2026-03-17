@@ -25,7 +25,7 @@ internal static class Compat_DoorsExpanded
             return;
         }
 
-        
+
         try
         {
             if (!typeof(Building).IsAssignableFrom(doorExpandedType))

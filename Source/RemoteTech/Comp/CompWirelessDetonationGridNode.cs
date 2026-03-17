@@ -124,11 +124,10 @@ public class CompWirelessDetonationGridNode : ThingComp
         }
 
         // for each receiver pick the closest transmitter
-        var ownPos = Position;
         return receivers.Select(r =>
         {
             var closest = transmitters.Select(t =>
-                new KeyValuePair<CompWirelessDetonationGridNode, float>(t, ownPos.DistanceToSquared(r.Position))
+                new KeyValuePair<CompWirelessDetonationGridNode, float>(t, t.Position.DistanceToSquared(r.Position))
             ).Aggregate((min, pair) => min.Value < float.Epsilon || pair.Value < min.Value ? pair : min);
             return new TransmitterReceiverPair(closest.Key, r);
         });

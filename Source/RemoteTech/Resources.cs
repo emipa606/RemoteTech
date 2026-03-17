@@ -1,7 +1,7 @@
-﻿using RimWorld;
+﻿using HugsLib.Utils;
+using RimWorld;
 using UnityEngine;
 using Verse;
-using HugsLib.Utils;
 
 namespace RemoteTech;
 

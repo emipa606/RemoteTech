@@ -111,6 +111,8 @@ public class GasCloud : Thing
         var gameComponent = Current.Game.GetComponent<GameComponent_TickDelayScheduler>();
         if (gameComponent != null)
         {
+            gameComponent.InitTDS();
+            gameComponent.InitDTS();            
             tickDelayScheduler = gameComponent.scheduler;
             distributedTickScheduler = gameComponent.distScheduler;
         }

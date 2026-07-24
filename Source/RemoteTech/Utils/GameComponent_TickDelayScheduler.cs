@@ -29,7 +29,7 @@ public class GameComponent_TickDelayScheduler : GameComponent
         //base.GameComponentTick();
     }
 
-    private void InitTDS()
+    public void InitTDS()
     {
         if (scheduler != null)
         {
@@ -43,7 +43,7 @@ public class GameComponent_TickDelayScheduler : GameComponent
         //Log.Message($"Last processed tick: {scheduler.lastProcessedTick}");
     }
 
-    private void InitDTS()
+    public void InitDTS()
     {
         if (distScheduler != null)
         {

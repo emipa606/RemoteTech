@@ -112,7 +112,7 @@ public class GasCloud : Thing
         if (gameComponent != null)
         {
             gameComponent.InitTDS();
-            gameComponent.InitDTS();            
+            gameComponent.InitDTS();
             tickDelayScheduler = gameComponent.scheduler;
             distributedTickScheduler = gameComponent.distScheduler;
         }

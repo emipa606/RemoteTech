@@ -86,4 +86,7 @@
     <File Path="../1.6/Defs/ThingDefs/Items_Resource_Manufactured.xml" />
     <File Path="../1.6/Defs/ThingDefs/Plants.xml" />
   </Folder>
+  <Folder Name="/XML/Languages/English/Keyed/">
+    <File Path="../Languages/English/Keyed/RemoteExplosivesStrings.xml" />
+  </Folder>
 </Solution>

@@ -1,51 +1,67 @@
-# GitHub Copilot Instructions for Remote Tech Mod (Continued)
+# Remote Tech (Continued) Copilot Instructions
 
-## Overview
-
-**Mod Name**: Remote Tech (Continued)  
-**Purpose**:  
-Remote Tech is a content-rich mod designed to enhance the strategic capabilities of players in RimWorld by introducing remotely detonated explosives. This mod facilitates more effective base defense strategies, efficient mining operations, and many other advanced in-game activities. It offers a wide variety of explosives ranging from low-tech, makeshift devices beneficial for early colonies to advanced technologies suited for late-game scenarios.
+## Mod Overview and Purpose
+Remote Tech (Continued) is an advanced content mod for RimWorld that expands gameplay through the introduction of remotely detonated explosives. The mod allows players to enhance their defense strategies, strategically mine resources, and more. Catering to both early and late-game colonies, the mod introduces a progression system starting with low-tech makeshift explosives and culminating with sophisticated chemical charges and automated defenses.
 
 ## Key Features and Systems
+- **Explosive Crafting and Deployment**: 
+  - Begin by researching 'Makeshift Explosives' to unlock basic explosives.
+  - Craft initial explosives at the campfire or crafting spot using renewable materials.
+  - Advanced explosives can be crafted at the explosives workshop or acquired from traders.
+  - Use the build menu to place explosives, found under the Remote Tech category.
 
-- **Explosive Crafting and Deployment**: Players begin with low-tech explosive options crafted using basic materials. As the game progresses, more sophisticated technologies become accessible, including chemical charges and automated defenses.
-  
-- **Detonation Mechanics**: Initial explosives are manually detonated using a detonator wire and a manual detonator. With further research, remote detonation via radio signal becomes possible, allowing for upgraded functionality such as detonation channels for organized explosive deployment.
-  
-- **Research Tree**: The mod expands the tech tree, offering a progression path for unlocking and refining explosive technologies.
-  
-- **Compatibility**: The mod is designed to be safely added to existing game saves. It also requires the HugsLib library mod to function correctly.
+- **Detonation Systems**:
+  - Initially, trigger explosives using a manual detonator connected by detonator wire.
+  - Research the remote detonator to trigger explosives via radio signal.
+  - Upgrade the remote detonator with channel capabilities for selective detonation control.
+
+- **Research Progression**:
+  - Follow the dedicated Remote Tech research tree to unlock advanced technologies and improved explosive capabilities.
+
+- **Compatibility**: 
+  - The mod can be safely incorporated into existing saves.
 
 ## Coding Patterns and Conventions
+- **C# Practices**:
+  - Follow standard RimWorld modding conventions with clear, descriptive function and variable names.
+  - Ensuring all mod features are encapsulated within well-defined types and classes, making use of interfaces when logical separation is needed (e.g., `IRedButtonFeverTarget`, `ISwitchable`).
+  - Implement error handling practices to maintain stability.
 
-- **C# Standards**: The mod code adheres to standard C# conventions including PascalCase for class names and camelCase for method names and local variables.
-
-- **Classes and Methods**: The codebase is extensively class-based, with specific functionality encapsulated in well-named classes to facilitate maintenance and expansion.
-
-- **Interface Usage**: Interfaces like `IPawnDetonateable`, `IRedButtonFeverTarget`, and `ISwitchable` ensure consistent implementation across various game features.
-
-## XML Integration
-
-- **Integration with Game XML**: The mod integrates C# code with RimWorld's XML definitions for game assets, allowing for extensible and modular feature additions.
-
-- **DefModExtensions**: Utilizes `DefModExtension` to inject additional behavior into existing game definitions via XML.
+- **XML Integration**:
+  - Definitions are organized logically by type (e.g., `DamageDef`, `KeyBindingDef`) and used to configure game elements such as damage types, apparel layers, designation categories, etc.
+  - Keep XML clean and organized, using indentation and comments for readability.
 
 ## Harmony Patching
-
-- **Patching for Game Integration**: The mod employs Harmony patches to modify base game behavior without altering the original code. This is crucial for compatibility and maintaining mod stability across game updates.
-
-- **Specific Patches**: Files like `CultivatedPlants_DeterminePlantDef_Patch` and `ThingDef_ConnectToPower_Patch` illustrate targeted use of patches to modify specific game mechanics related to plant growth and power connectivity respectively.
+- Utilize the Harmony library to ensure compatibility and extend or modify core RimWorld functionality without altering the game's source code.
+- Apply patches where necessary to override or augment game logic relating to detonation, crafting mechanics, or AI behavior associated with explosive operations.
 
 ## Suggestions for Copilot
+- **Auto-completion for common tasks**:
+  - Provide code suggestions for setting up new crafting recipes and detonator interactions.
+  - Suggest efficient patterns for defining new explosives in XML.
 
-1. **Contextual Code Snippets**: Incorporate code snippets for common tasks such as defining new `JobDriver` classes, integrating new research nodes in XML, or creating new Harmony patches.
+- **Adaptable Code Generation**:
+  - Generate template code for implementing new job drivers or AI behaviors related to the mod's features.
+  - Recommend boilerplate Harmony patches for modifying vanilla methods affecting remote explosive mechanics.
 
-2. **Example Implementations**: Offer examples for implementing new detonator types using existing class hierarchies, or adding new explosive effects through `ThingComp`.
+- **Error Handling and Logging**:
+  - Propose methods to integrate comprehensive error handling to log unexpected issues during mod execution.
 
-3. **Refactoring Help**: Assist in refactoring existing methods for enhanced performance or readability, and suggest more efficient algorithms where applicable.
+- **Research and Progression Systems**:
+  - Assist in generating research nodes and ensuring they are contextually linked within the Remote Tech research tree.
 
-4. **XML Templates**: Provide templates for XML definitions and `DefModExtension` usage, facilitating easy addition of new functionalities.
+For more detailed support and feature discussions, please join the official forum or Discord channel provided by the mod community. Enjoy enhancing your RimWorld experience with Remote Tech's strategic depth!
 
-5. **Harmony Patch Suggestions**: Recommend patch methods to address potential compatibility concerns with future RimWorld updates, ensuring continued mod functionality.
+## Project Solution Guidelines
+- Relevant mod XML files are included as Solution Items under the solution folder named XML, these can be read and modified from within the solution.
+- Use these in-solution XML files as the primary files for reference and modification.
+- The `.github/copilot-instructions.md` file is included in the solution under the `.github` solution folder, so it should be read/modified from within the solution instead of using paths outside the solution. Update this file once only, as it and the parent-path solution reference point to the same file in this workspace.
+- When making functional changes in this mod, ensure the documented features stay in sync with implementation; use the in-solution `.github` copy as the primary file.
+- In the solution is also a project called Assembly-CSharp, containing a read-only version of the decompiled game source, for reference and debugging purposes.
+- For any new documentation, update this copilot-instructions.md file rather than creating separate documentation files.
 
-By providing these instructions and utilizing the capabilities of GitHub Copilot, developers working on the Remote Tech mod can effectively streamline their workflow, maintain consistency, and incorporate best practices in their codebase.
+
+## Hard rules (must follow)
+- Do NOT run commands that modify the repo (no git commit, git apply, dotnet format) unless explicitly asked.
+- Prefer minimal reads: read only the smallest code region needed (around the suspicious lines).
+

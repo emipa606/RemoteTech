@@ -1,5 +1,8 @@
 # Changelog for RemoteTech
 
+1.6.8 - Fixed MatFrom with null sourceTex error when loaded with Nightmare Core
+
+
 1.6.7 - Gas clouds load-fix, thanks asdfasdf-ohfot
 
 

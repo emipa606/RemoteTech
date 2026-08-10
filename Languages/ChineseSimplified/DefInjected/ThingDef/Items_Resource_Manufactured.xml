@@ -11,7 +11,7 @@
   <!-- EN: mining explosive -->
   <rxMiningExplosiveComponent.label>矿用炸药</rxMiningExplosiveComponent.label>
   <!-- EN: The main part of a remote mining explosive.\nPlace as a building from the Explosives menu to use.\n\n<i><color=#66E0E4FF>Remote Tech (Continued)</color></i> -->
-  <rxMiningExplosiveComponent.description>远程矿用炸药的主要组件。可从炸药菜单中作为建筑放置使用。</rxMiningExplosiveComponent.description>
+  <rxMiningExplosiveComponent.description>远程矿用炸药的主要零部件。可从炸药菜单中作为建筑放置使用。</rxMiningExplosiveComponent.description>
   <!-- EN: remote explosive -->
   <rxRemoteBomb.label>远程炸药</rxRemoteBomb.label>
   <!-- EN: Explosive trap with a remote trigger.\nPlace as a building from the Explosives menu to use.\n\n<i><color=#66E0E4FF>Remote Tech (Continued)</color></i> -->
@@ -29,9 +29,9 @@
   <!-- EN: A remotely triggered canister containing sealing foam.\nPlace as a building from the Explosives menu to use.\n\n<i><color=#66E0E4FF>Remote Tech (Continued)</color></i> -->
   <rxRemoteFoamCan.description>含有密封泡沫的远程触发罐。可从炸药菜单中作为建筑放置使用。</rxRemoteFoamCan.description>
   <!-- EN: refined sleeping gas canister -->
-  <rxRemoteRefinedSleepingGasCan.label>精致催眠瓦斯罐</rxRemoteRefinedSleepingGasCan.label>
+  <rxRemoteRefinedSleepingGasCan.label>精制催眠瓦斯罐</rxRemoteRefinedSleepingGasCan.label>
   <!-- EN: A remotely triggered canister filled with refined sleeping gas. Significantly more potent than common sleeping gas.\nPlace as a building from the Explosives menu to use.\n\n<i><color=#66E0E4FF>Remote Tech (Continued)</color></i> -->
-  <rxRemoteRefinedSleepingGasCan.description>含有精致催眠瓦斯的远程触发罐。比普通催眠瓦斯更有效。可从炸药菜单中作为建筑放置使用。</rxRemoteRefinedSleepingGasCan.description>
+  <rxRemoteRefinedSleepingGasCan.description>含有精制催眠瓦斯的远程触发罐。比普通催眠瓦斯更有效。可从炸药菜单中作为建筑放置使用。</rxRemoteRefinedSleepingGasCan.description>
   <!-- EN: sleeping gas canister -->
   <rxRemoteSleepingGasCan.label>催眠瓦斯罐</rxRemoteSleepingGasCan.label>
   <!-- EN: A remotely triggered canister containing sleeping gas.\nPlace as a building from the Explosives menu to use.\n\n<i><color=#66E0E4FF>Remote Tech (Continued)</color></i> -->

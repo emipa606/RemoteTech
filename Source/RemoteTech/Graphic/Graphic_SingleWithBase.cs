@@ -22,11 +22,25 @@ public class Graphic_SingleWithBase : Graphic_Single
             return;
         }
 
+        var frontTex = baseData.BaseFrontTex
+                       ?? (!string.IsNullOrEmpty(baseData.baseFrontTexPath)
+                           ? ContentFinder<Texture2D>.Get(baseData.baseFrontTexPath)
+                           : null);
+        var sideTex = baseData.BaseSideTex
+                      ?? (!string.IsNullOrEmpty(baseData.baseSideTexPath)
+                          ? ContentFinder<Texture2D>.Get(baseData.baseSideTexPath)
+                          : null);
+        if (frontTex == null || sideTex == null)
+        {
+            baseData = null;
+            return;
+        }
+
         baseMatFront =
-            MaterialPool.MatFrom(new MaterialRequest(baseData.BaseFrontTex, baseData.shaderType.Shader,
+            MaterialPool.MatFrom(new MaterialRequest(frontTex, baseData.shaderType.Shader,
                 baseData.color));
         baseMatSide =
-            MaterialPool.MatFrom(new MaterialRequest(baseData.BaseSideTex, baseData.shaderType.Shader,
+            MaterialPool.MatFrom(new MaterialRequest(sideTex, baseData.shaderType.Shader,
                 baseData.color));
     }
 

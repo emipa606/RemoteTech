@@ -115,17 +115,17 @@
   <!-- EN: Making sealing foam canister. -->
   <rxMakeRemoteFoamCan_Steel.jobString>正在制作密封泡沫罐。</rxMakeRemoteFoamCan_Steel.jobString>
   <!-- EN: make refined sleeping gas canister -->
-  <rxMakeRemoteRefinedSleepingGasCan.label>制作精致催眠瓦斯罐</rxMakeRemoteRefinedSleepingGasCan.label>
+  <rxMakeRemoteRefinedSleepingGasCan.label>制作精制催眠瓦斯罐</rxMakeRemoteRefinedSleepingGasCan.label>
   <!-- EN: Craft a refined sleeping gas canister.\n\n<i><color=#66E0E4FF>Remote Tech (Continued)</color></i> -->
-  <rxMakeRemoteRefinedSleepingGasCan.description>制作一个精致催眠瓦斯罐。</rxMakeRemoteRefinedSleepingGasCan.description>
+  <rxMakeRemoteRefinedSleepingGasCan.description>制作一个精制催眠瓦斯罐。</rxMakeRemoteRefinedSleepingGasCan.description>
   <!-- EN: Making refined sleeping gas canister. -->
-  <rxMakeRemoteRefinedSleepingGasCan.jobString>正在制作精致催眠瓦斯罐。</rxMakeRemoteRefinedSleepingGasCan.jobString>
+  <rxMakeRemoteRefinedSleepingGasCan.jobString>正在制作精制催眠瓦斯罐。</rxMakeRemoteRefinedSleepingGasCan.jobString>
   <!-- EN: make refined sleeping gas canister -->
-  <rxMakeRemoteRefinedSleepingGasCan_Steel.label>制作精致催眠瓦斯罐</rxMakeRemoteRefinedSleepingGasCan_Steel.label>
+  <rxMakeRemoteRefinedSleepingGasCan_Steel.label>制作精制催眠瓦斯罐</rxMakeRemoteRefinedSleepingGasCan_Steel.label>
   <!-- EN: Craft a refined sleeping gas canister.\n\n<i><color=#66E0E4FF>Remote Tech (Continued)</color></i> -->
-  <rxMakeRemoteRefinedSleepingGasCan_Steel.description>制作一个精致催眠瓦斯罐。</rxMakeRemoteRefinedSleepingGasCan_Steel.description>
+  <rxMakeRemoteRefinedSleepingGasCan_Steel.description>制作一个精制催眠瓦斯罐。</rxMakeRemoteRefinedSleepingGasCan_Steel.description>
   <!-- EN: Making refined sleeping gas canister. -->
-  <rxMakeRemoteRefinedSleepingGasCan_Steel.jobString>正在制作精致催眠瓦斯罐。</rxMakeRemoteRefinedSleepingGasCan_Steel.jobString>
+  <rxMakeRemoteRefinedSleepingGasCan_Steel.jobString>正在制作精制催眠瓦斯罐。</rxMakeRemoteRefinedSleepingGasCan_Steel.jobString>
   <!-- EN: make sleeping gas canister -->
   <rxMakeRemoteSleepingGasCan.label>制作催眠瓦斯罐</rxMakeRemoteSleepingGasCan.label>
   <!-- EN: Craft a canister containing sleeping gas.\n\n<i><color=#66E0E4FF>Remote Tech (Continued)</color></i> -->

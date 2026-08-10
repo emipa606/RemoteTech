@@ -118,13 +118,13 @@
   <!-- EN: Effects: The workbench will consume very little power when not in use. -->
   <rxBench.comps.CompUpgrade-0._effectDescription>效果：工作台在不使用时耗电量极低。</rxBench.comps.CompUpgrade-0._effectDescription>
   <!-- EN: Required materials: 2x component -->
-  <rxBench.comps.CompUpgrade-0._materialsDescription>所需材料：2 个组件</rxBench.comps.CompUpgrade-0._materialsDescription>
+  <rxBench.comps.CompUpgrade-0._materialsDescription>所需材料：2x零部件</rxBench.comps.CompUpgrade-0._materialsDescription>
   <!-- EN: Effects: Boost production speed by 25% by making harder and more precise tools.
 \nWork speed factor: x125% -->
   <rxBench.comps.CompUpgrade-1._effectDescription>效果：通过制造更坚硬、更精确的工具，将生产速度提高 25%。
 工作速度系数：x125</rxBench.comps.CompUpgrade-1._effectDescription>
   <!-- EN: Required materials: 2x advanced component, 40x plasteel -->
-  <rxBench.comps.CompUpgrade-1._materialsDescription>所需材料：2x 高级组件、40x 塑钢</rxBench.comps.CompUpgrade-1._materialsDescription>
+  <rxBench.comps.CompUpgrade-1._materialsDescription>所需材料：2x 高级零件、40x 玻璃钢</rxBench.comps.CompUpgrade-1._materialsDescription>
   <!-- EN: A simple plunger-type detonator. When activated, sends a pulse along the attached detonator wire to all connected explosives, lighting their fuses.\nRight-click with a drafted colonist for better timing. -->
   <!-- EN: A special wire used to connect the manual detonator to makeshift explosives, remote explosives and IEDs. Can be placed under walls and other buildings.\nCan fail if used while wet. -->
   <!-- EN: Allows two detonator wires to cross without causing signal transmission between them.\n		Waterproof. -->
@@ -136,7 +136,7 @@
   <!-- EN: Extends the range of detonators, provided that the mast is within their range. Masts connect to each other, as well, making it possible to cover even large maps with a single detonator. -->
   <!-- EN: Effects: Detonator signal range: x150%, Power consumption: x200% -->
   <rxRadioMast.comps.CompUpgrade._effectDescription>效果：引爆器信号范围：x150%，能量消耗：x200</rxRadioMast.comps.CompUpgrade._effectDescription>
-  <rxRadioMast.comps.CompUpgrade._materialsDescription>所需材料：2 个组件</rxRadioMast.comps.CompUpgrade._materialsDescription>
+  <rxRadioMast.comps.CompUpgrade._materialsDescription>所需材料：2x 零部件</rxRadioMast.comps.CompUpgrade._materialsDescription>
   <!-- EN: An explosive canister with a radio trigger.\nCraft at the Explosives Workshop.\nArm, then detonate from the Remote Explosives Console. -->
   <!-- EN: A single-use electromagnetic pulse generator.\nVery powerful against mechanoids.\nCraft at the Explosives Workshop.\nArm, then detonate from the Remote Explosives Console. -->
   <!-- EN: A canister filled with flammable chemicals with a radio trigger.\nCraft at the Explosives Workshop.\nArm, then detonate from the Remote Explosives Console. -->
@@ -147,5 +147,5 @@
   <!-- EN: Effects: The detonator will consume very little power when not in use. -->
   <rxTableDetonator.comps.CompUpgrade-2._effectDescription>效果：雷管在不使用时耗电量极低。</rxTableDetonator.comps.CompUpgrade-2._effectDescription>
   <!-- EN: Required materials: 4x component -->
-  <rxTableDetonator.comps.CompUpgrade-2._materialsDescription>所需材料4x 组件</rxTableDetonator.comps.CompUpgrade-2._materialsDescription>
+  <rxTableDetonator.comps.CompUpgrade-2._materialsDescription>所需材料：4x 零部件</rxTableDetonator.comps.CompUpgrade-2._materialsDescription>
 </LanguageData>

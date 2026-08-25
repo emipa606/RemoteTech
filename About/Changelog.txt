@@ -1,5 +1,8 @@
 # Changelog for RemoteTech
 
+1.6.9 - Updated chinese translation, thanks ylc395
+
+
 1.6.8 - Fixed MatFrom with null sourceTex error when loaded with Nightmare Core
 
 

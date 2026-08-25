@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+  <!-- When Expanded Materials - Metals is loaded, fully replace RemoteTech's crushed charcoal
+       (rxCharcoal) with EM charcoal (EM_Charcoal), and remove RemoteTech's own charcoal recipe. -->
+  <Operation Class="PatchOperationFindMod">
+    <mods>
+      <!-- matches mod name or packageId -->
+      <li>Expanded Materials - Metals</li>
+      <li>Argon.ExpandedMaterials.Metals</li>
+    </mods>
+    <match Class="PatchOperationSequence">
+      <operations>
+        <!-- Explosive pouch recipe: use EM charcoal instead of RemoteTech charcoal -->
+        <li Class="PatchOperationReplace">
+          <xpath>/Defs/RecipeDef[defName="rxMakeExplosivePouch"]/ingredients/li/filter/thingDefs/li[text()="rxCharcoal"]</xpath>
+          <value>
+            <li>EM_Charcoal</li>
+          </value>
+        </li>
+        <li Class="PatchOperationReplace">
+          <xpath>/Defs/RecipeDef[defName="rxMakeExplosivePouch"]/fixedIngredientFilter/thingDefs/li[text()="rxCharcoal"]</xpath>
+          <value>
+            <li>EM_Charcoal</li>
+          </value>
+        </li>
+        <!-- Remove RemoteTech's "make crushed charcoal" recipe -->
+        <li Class="PatchOperationRemove">
+          <xpath>/Defs/RecipeDef[defName="rxMakeCharcoal"]</xpath>
+        </li>
+        <!-- Remove RemoteTech's charcoal item def entirely -->
+        <li Class="PatchOperationRemove">
+          <xpath>/Defs/ThingDef[defName="rxCharcoal"]</xpath>
+        </li>
+      </operations>
+    </match>
+  </Operation>
+</Patch>

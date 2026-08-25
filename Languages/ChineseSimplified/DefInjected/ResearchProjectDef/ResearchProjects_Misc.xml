@@ -3,11 +3,11 @@
   <!-- EN: Detonator Channels -->
   <rxChannels.label>起爆器频道</rxChannels.label>
   <rxChannels.description>解锁起爆器的频道使用。只有与起爆器在同一频道的炸药才能被引爆。这允许设置多条爆炸防线。
-  起爆器必须升级一个组件才能实现这一功能。</rxChannels.description>
+  起爆器必须加装一个零部件才能实现这一功能。</rxChannels.description>
   <!-- EN: Advanced Channels -->
   <rxChannelsAdvanced.label>高级频道</rxChannelsAdvanced.label>
   <rxChannelsAdvanced.description>信号传输的进步使得起爆器可以使用8个频道。起爆器还获得识别每个频道上炸药类型的能力。
-  起爆器必须升级高级组件才能实现这一功能。</rxChannelsAdvanced.description>
+  起爆器必须加装一个高级零件才能实现这一功能。</rxChannelsAdvanced.description>
   <!-- EN: Remote EMP Charge -->
   <rxEmpMine.label>遥控EMP炸药</rxEmpMine.label>
   <rxEmpMine.description>解锁可用遥控起爆器引爆的EMP炸弹的制作。

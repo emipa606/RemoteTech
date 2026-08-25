@@ -63,38 +63,38 @@
   <!-- EN: Effects: Max hit points: x300%, Flammability: x0% -->
   <rxGasVent.comps.CompUpgrade-0._effectDescription>效果：最大命中率：x300%，可燃性：x0</rxGasVent.comps.CompUpgrade-0._effectDescription>
   <!-- EN: Required materials: 50x plasteel -->
-  <rxGasVent.comps.CompUpgrade-0._materialsDescription>所需材料50x 塑钢</rxGasVent.comps.CompUpgrade-0._materialsDescription>
+  <rxGasVent.comps.CompUpgrade-0._materialsDescription>所需材料50x 玻璃钢</rxGasVent.comps.CompUpgrade-0._materialsDescription>
   <!-- EN: Effects: Gas venting power: x200%, Power consumption: x200%, Beauty: x10 -->
-  <rxGasVent.comps.CompUpgrade-1._effectDescription>效果气体排放功率：x200%, 能量消耗：x200%, 美女：x10</rxGasVent.comps.CompUpgrade-1._effectDescription>
+  <rxGasVent.comps.CompUpgrade-1._effectDescription>效果气体排放功率：x200%, 能量消耗：x200%, 美观：x10</rxGasVent.comps.CompUpgrade-1._effectDescription>
   <!-- EN: Required materials: 2x component, 60x steel -->
-  <rxGasVent.comps.CompUpgrade-1._materialsDescription>所需材料：2 倍组件、60 倍钢材</rxGasVent.comps.CompUpgrade-1._materialsDescription>
+  <rxGasVent.comps.CompUpgrade-1._materialsDescription>所需材料：2x 零部件、60x 钢铁</rxGasVent.comps.CompUpgrade-1._materialsDescription>
   <!-- EN: Effects: The vent will draw very little power when no gas needs to be moved. -->
   <rxGasVent.comps.CompUpgrade-2._effectDescription>效果：当不需要移动气体时，通风口将消耗极少的能量。</rxGasVent.comps.CompUpgrade-2._effectDescription>
   <!-- EN: Required materials: 2x component -->
-  <rxGasVent.comps.CompUpgrade-2._materialsDescription>所需材料：2 个组件</rxGasVent.comps.CompUpgrade-2._materialsDescription>
+  <rxGasVent.comps.CompUpgrade-2._materialsDescription>所需材料：2x 零部件</rxGasVent.comps.CompUpgrade-2._materialsDescription>
   <!-- EN: High-tech solar panels combined with a battery bank. Lightweight and weatherproof- a great choice for camping trips and powering things in the field. The battery will retain its charge when uninstalled. The bar shows the charge level of the battery. -->
   <!-- EN: Effects: Power capacity: x175%, Mass: x150% -->
   <rxPowerUnit.comps.CompUpgrade-0._effectDescription>效果：能量容量：x175%，质量：x150</rxPowerUnit.comps.CompUpgrade-0._effectDescription>
   <!-- EN: Required materials: 3x component -->
-  <rxPowerUnit.comps.CompUpgrade-0._materialsDescription>所需材料3x 组件</rxPowerUnit.comps.CompUpgrade-0._materialsDescription>
+  <rxPowerUnit.comps.CompUpgrade-0._materialsDescription>所需材料：3x 零部件</rxPowerUnit.comps.CompUpgrade-0._materialsDescription>
   <!-- EN: Effects: Sun exposure: x200%, Mass: x120% -->
   <rxPowerUnit.comps.CompUpgrade-1._effectDescription>效果：阳光照射：x200%，质量：x120</rxPowerUnit.comps.CompUpgrade-1._effectDescription>
   <!-- EN: Required materials: 1x component, 40x steel -->
-  <rxPowerUnit.comps.CompUpgrade-1._materialsDescription>所需材料1x 组件, 40x 钢</rxPowerUnit.comps.CompUpgrade-1._materialsDescription>
+  <rxPowerUnit.comps.CompUpgrade-1._materialsDescription>所需材料：1x 零部件, 40x 钢铁</rxPowerUnit.comps.CompUpgrade-1._materialsDescription>
   <!-- EN: Scans for movement in the surrounding area. On detection, can either sound an alarm, or send a detonation signal. Can be upgraded to a wireless detonator, and even an AI core to ignore friendly units. -->
   <!-- EN: Effects: Sensor range: x125%, Sensor angle: x125%, Power consumption: x120% -->
   <rxProximitySensor.comps.CompUpgrade-0._effectDescription>效果传感器范围：x125%、传感器角度：x125%、耗电量：x120</rxProximitySensor.comps.CompUpgrade-0._effectDescription>
   <!-- EN: Required materials: 1x advanced component -->
-  <rxProximitySensor.comps.CompUpgrade-0._materialsDescription>所需材料1x 高级组件</rxProximitySensor.comps.CompUpgrade-0._materialsDescription>
+  <rxProximitySensor.comps.CompUpgrade-0._materialsDescription>所需材料：1x 高级零件</rxProximitySensor.comps.CompUpgrade-0._materialsDescription>
   <!-- EN: Effects: Adds a wireless detonator to the detector, allowing it to trigger wireless explosives. -->
   <rxProximitySensor.comps.CompUpgrade-1._effectDescription>效果：为探测器添加无线引爆器，使其能够触发无线爆炸物。</rxProximitySensor.comps.CompUpgrade-1._effectDescription>
   <!-- EN: Required materials: 1x component, 1x advanced component -->
-  <rxProximitySensor.comps.CompUpgrade-1._materialsDescription>所需材料1x 组件、1x 高级组件</rxProximitySensor.comps.CompUpgrade-1._materialsDescription>
+  <rxProximitySensor.comps.CompUpgrade-1._materialsDescription>所需材料：1x 零部件、1x 高级零件</rxProximitySensor.comps.CompUpgrade-1._materialsDescription>
   <!-- EN: Effects: Installs an AI persona core to filter the detected targets.
 \nSensor rotation speed: x125%, Max hit points: x200%, Flammability: x0% -->
-  <rxProximitySensor.comps.CompUpgrade-2._effectDescription>效果：安装人工智能角色核心，过滤检测到的目标。
+  <rxProximitySensor.comps.CompUpgrade-2._effectDescription>效果：安装人工智能人格核心，过滤检测到的目标。
 传感器旋转速度：x125%、最大命中率：x200%、可燃性：x0</rxProximitySensor.comps.CompUpgrade-2._effectDescription>
   <!-- EN: Required materials: 1x persona core, 40x plasteel -->
-  <rxProximitySensor.comps.CompUpgrade-2._materialsDescription>所需材料1x 角色核心、40x 塑钢</rxProximitySensor.comps.CompUpgrade-2._materialsDescription>
+  <rxProximitySensor.comps.CompUpgrade-2._materialsDescription>所需材料1x 人格核心、40x 玻璃钢</rxProximitySensor.comps.CompUpgrade-2._materialsDescription>
   <!-- EN: Becomes tougher than rock as it solidifies. -->
 </LanguageData>

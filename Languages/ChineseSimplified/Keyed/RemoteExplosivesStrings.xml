@@ -17,9 +17,9 @@
   <!-- EN: When armed, this explosive can be remotely detonated. -->
   <RemoteExplosive_arm_desc>当打开保险后，该炸药可被遥控引爆。</RemoteExplosive_arm_desc>
   <!-- EN: Armed -->
-  <RemoteExplosive_armed>武装</RemoteExplosive_armed>
+  <RemoteExplosive_armed>已解除保险</RemoteExplosive_armed>
   <!-- EN: Not armed -->
-  <RemoteExplosive_notArmed>未装备武器</RemoteExplosive_notArmed>
+  <RemoteExplosive_notArmed>未解除保险</RemoteExplosive_notArmed>
   <!-- EN: Current channel: {0} -->
   <RemoteExplosive_currentChannel>当前频道：{0}</RemoteExplosive_currentChannel>
   <!-- EN: Channel {0}{1} -->
@@ -49,7 +49,7 @@
   <!-- EN: Steel -->
   <BillsTab_MaterialButton_steel_mode>钢铁</BillsTab_MaterialButton_steel_mode>
   <!-- EN: Silver -->
-  <BillsTab_MaterialButton_silver_mode>银色</BillsTab_MaterialButton_silver_mode>
+  <BillsTab_MaterialButton_silver_mode>白银</BillsTab_MaterialButton_silver_mode>
   <!-- EN: Sparkpowder -->
   <BillsTab_MaterialButton_sparkpowder_mode>火药</BillsTab_MaterialButton_sparkpowder_mode>
   <!-- EN: These buttons can be used to select the materials that new bills are created with. Non-standard materials increase the amount of work required. -->
@@ -71,15 +71,15 @@
   <!-- EN: recovering -->
   <HediffRecovery_status_label>恢复中</HediffRecovery_status_label>
   <!-- EN: Detonate (channel {0}) -->
-  <PortableDetonator_detonateChannel_label>引爆（通道 {0}</PortableDetonator_detonateChannel_label>
+  <PortableDetonator_detonateChannel_label>引爆（频道 {0}）</PortableDetonator_detonateChannel_label>
   <!-- EN: Detonates all armed explosives in range on the current channel or on channel 1 if not upgraded. -->
-  <PortableDetonator_detonateChannel_desc>引爆当前频道或频道1（如果未升级）范围内的所有武装炸药。</PortableDetonator_detonateChannel_desc>
+  <PortableDetonator_detonateChannel_desc>引爆当前频道或频道1（如果未升级）范围内的所有解除保险的炸药。</PortableDetonator_detonateChannel_desc>
   <!-- EN: Uses left: {0} -->
   <PortableDetonator_detonate_uses>剩余使用次数：{0}</PortableDetonator_detonate_uses>
   <!-- EN: The Portable Detonator ran out of battery power. -->
   <PortableDetonator_broke_msg>便携式起爆器的电池电量耗尽了。</PortableDetonator_broke_msg>
   <!-- EN: Cannot detonate- no armed explosives in range on this channel. -->
-  <Detonator_notargets>无法引爆，范围内此频道无已打开保险的炸药。</Detonator_notargets>
+  <Detonator_notargets>无法引爆，范围内此频道无已解除保险的炸药。</Detonator_notargets>
   <!-- EN: Detonate -->
   <DetonatorManual_detonate_label>引爆</DetonatorManual_detonate_label>
   <!-- EN: Detonates all explosives connected to the same detonator wire. -->
@@ -113,25 +113,25 @@
   <!-- EN: How long an auto-replaced blueprint should stay forbidden (in seconds). -->
   <Setting_forbidTimeout_desc>自动重置的蓝图禁止状态的时长（秒）。</Setting_forbidTimeout_desc>
   <!-- EN: Auto-arm combat explosives -->
-  <Setting_autoArmCombat_label>自动武器战斗炸药</Setting_autoArmCombat_label>
+  <Setting_autoArmCombat_label>自动解除战斗炸药的保险</Setting_autoArmCombat_label>
   <!-- EN: When enabled, combat explosives will be automatically armed when they are deployed. -->
-  <Setting_autoArmCombat_desc>启用后，战斗炸药在部署时将自动布防。</Setting_autoArmCombat_desc>
+  <Setting_autoArmCombat_desc>启用后，战斗炸药在部署时将自动解除保险。</Setting_autoArmCombat_desc>
   <!-- EN: Auto-arm mining explosives -->
-  <Setting_autoArmMining_label>自动武装采矿炸药</Setting_autoArmMining_label>
+  <Setting_autoArmMining_label>自动解除采矿炸药的保险</Setting_autoArmMining_label>
   <!-- EN: When enabled, mining explosives will be automatically armed when they are deployed. -->
-  <Setting_autoArmMining_desc>启用后，采矿炸药在部署时将自动布防。</Setting_autoArmMining_desc>
+  <Setting_autoArmMining_desc>启用后，采矿炸药在部署时将自动解除保险。</Setting_autoArmMining_desc>
   <!-- EN: Auto-arm utility explosives -->
-  <Setting_autoArmUtility_label>自动武器通用炸药</Setting_autoArmUtility_label>
+  <Setting_autoArmUtility_label>自动解除功能性炸药的保险</Setting_autoArmUtility_label>
   <!-- EN: When enabled, utility explosives will be automatically armed when they are deployed. -->
-  <Setting_autoArmUtility_desc>启用后，公用爆炸装置在部署时将自动布防。</Setting_autoArmUtility_desc>
+  <Setting_autoArmUtility_desc>启用后，功能性炸药在部署时将自动解除保险。</Setting_autoArmUtility_desc>
   <!-- EN: Mining charges forbid drops -->
-  <Setting_miningChargesForbid_label>采矿费禁止下降</Setting_miningChargesForbid_label>
+  <Setting_miningChargesForbid_label>采矿炸药禁止掉落物</Setting_miningChargesForbid_label>
   <!-- EN: When enabled, resources dropped by mining charges are automatically forbidden. -->
-  <Setting_miningChargesForbid_desc>启用后，采矿费用掉落的资源将被自动禁止。</Setting_miningChargesForbid_desc>
+  <Setting_miningChargesForbid_desc>启用后，采矿炸药掉落的资源将被自动禁止。</Setting_miningChargesForbid_desc>
   <!-- EN: Lower standing cap -->
   <Setting_lowerStandingCap_label>下立柱盖</Setting_lowerStandingCap_label>
   <!-- EN: When enabled, faction standing with friendlies will drop below -100 when knocking them out with sleeping gas. -->
-  <Setting_lowerStandingCap_desc>启用后，当使用睡眠毒气击倒友军时，友军的派系地位将降至-100以下。</Setting_lowerStandingCap_desc>
+  <Setting_lowerStandingCap_desc>启用后，当使用催眠瓦斯击倒友军时，盟友的好感度将降至-100以下。</Setting_lowerStandingCap_desc>
   <!-- EN: Venting capacity: {0} per second -->
   <GasVent_ventedPerSecond>排气能力：每秒{0}次</GasVent_ventedPerSecond>
   <!-- EN: Blocked -->

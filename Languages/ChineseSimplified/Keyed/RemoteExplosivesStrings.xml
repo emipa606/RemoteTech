@@ -113,7 +113,7 @@
   <!-- EN: How long an auto-replaced blueprint should stay forbidden (in seconds). -->
   <Setting_forbidTimeout_desc>自动重置的蓝图禁止状态的时长（秒）。</Setting_forbidTimeout_desc>
   <!-- EN: Auto-arm combat explosives -->
-  <Setting_autoArmCombat_label>自动武器战斗炸药</Setting_autoArmCombat_label>
+  <Setting_autoArmCombat_label>自动解除战斗炸药的保险</Setting_autoArmCombat_label>
   <!-- EN: When enabled, combat explosives will be automatically armed when they are deployed. -->
   <Setting_autoArmCombat_desc>启用后，战斗炸药在部署时将自动解除保险。</Setting_autoArmCombat_desc>
   <!-- EN: Auto-arm mining explosives -->
@@ -121,13 +121,13 @@
   <!-- EN: When enabled, mining explosives will be automatically armed when they are deployed. -->
   <Setting_autoArmMining_desc>启用后，采矿炸药在部署时将自动解除保险。</Setting_autoArmMining_desc>
   <!-- EN: Auto-arm utility explosives -->
-  <Setting_autoArmUtility_label>自动武器通用炸药</Setting_autoArmUtility_label>
+  <Setting_autoArmUtility_label>自动解除功能性炸药的保险</Setting_autoArmUtility_label>
   <!-- EN: When enabled, utility explosives will be automatically armed when they are deployed. -->
-  <Setting_autoArmUtility_desc>启用后，公用爆炸装置在部署时将自动解除保险。</Setting_autoArmUtility_desc>
+  <Setting_autoArmUtility_desc>启用后，功能性炸药在部署时将自动解除保险。</Setting_autoArmUtility_desc>
   <!-- EN: Mining charges forbid drops -->
-  <Setting_miningChargesForbid_label>采矿费禁止下降</Setting_miningChargesForbid_label>
+  <Setting_miningChargesForbid_label>采矿炸药禁止掉落物</Setting_miningChargesForbid_label>
   <!-- EN: When enabled, resources dropped by mining charges are automatically forbidden. -->
-  <Setting_miningChargesForbid_desc>启用后，采矿费用掉落的资源将被自动禁止。</Setting_miningChargesForbid_desc>
+  <Setting_miningChargesForbid_desc>启用后，采矿炸药掉落的资源将被自动禁止。</Setting_miningChargesForbid_desc>
   <!-- EN: Lower standing cap -->
   <Setting_lowerStandingCap_label>下立柱盖</Setting_lowerStandingCap_label>
   <!-- EN: When enabled, faction standing with friendlies will drop below -100 when knocking them out with sleeping gas. -->
